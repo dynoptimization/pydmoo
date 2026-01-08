@@ -3,7 +3,7 @@ Includes modified code from [pymoo](https://github.com/anyoptimization/pymoo).
 
 Sources:
 
-    - [cec2015.py](https://github.com/anyoptimization/pymoo/blob/main/pymoo/problems/dynamic/cec2015.py)
+- [cec2015.py](https://github.com/anyoptimization/pymoo/blob/main/pymoo/problems/dynamic/cec2015.py)
 
 Licensed under the Apache License, Version 2.0. Original copyright and license terms are preserved.
 

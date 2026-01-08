@@ -3,7 +3,7 @@ Includes modified code from [pymoo](https://github.com/anyoptimization/pymoo).
 
 Sources:
 
-    - [df.py](https://github.com/anyoptimization/pymoo/blob/main/pymoo/problems/dynamic/df.py)
+- [df.py](https://github.com/anyoptimization/pymoo/blob/main/pymoo/problems/dynamic/df.py)
 
 Licensed under the Apache License, Version 2.0. Original copyright and license terms are preserved.
 """
