@@ -1,0 +1,140 @@
+[project]
+name = "pydmoo"
+version = "0.0.1"
+description = "Dynamic Multi-Objective Optimization in Python (pydmoo)."
+license = {text = "GPL-3.0-or-later"}
+license-files = ["LICENSE"]
+authors = [
+    {name = "DynOpt", email = "dynoptimization@gmail.com"},
+]
+maintainers = [
+    {name = "DynOpt", email = "dynoptimization@gmail.com"},
+]
+readme = "README.md"
+keywords = [
+    "Python",
+    "Dynamic Multi-objective Optimization"
+]
+classifiers = [
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Mathematics",
+]
+requires-python = ">=3.12"
+dependencies = [
+    "matplotlib>=3.10.8",
+    "mpmath>=1.3.0",
+    "numpy>=2.4.0",
+    "pandas>=2.3.3",
+    "psutil>=7.2.0",
+    "pymoo==0.6.1.6",
+    "scikit-learn>=1.8.0",
+    "scikit-posthocs>=0.11.4",
+    "scipy>=1.16.3",
+    "seaborn>=0.13.2",
+    "statsmodels>=0.14.6",
+    "tabulate>=0.9.0",
+    "torch>=2.9.1",
+]
+
+[project.urls]
+Homepage = "https://github.com/dynoptimization/pydmoo"
+Repository = "https://github.com/dynoptimization/pydmoo"
+Documentation = "https://dynoptimization.github.io/pydmoo/"
+Source = "https://github.com/dynoptimization/pydmoo"
+Issues = "https://github.com/dynoptimization/pydmoo/issues"
+Changelog = "https://github.com/dynoptimization/pydmoo/releases"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.2",
+    "pytest-cov>=7.0.0",
+]
+
+docs = [
+    "mkdocs>=1.6.1",
+    "mkdocs-autorefs>=1.4.3",
+    "mkdocs-material>=9.6.21",
+    "mkdocs-material-extensions>=1.3.1",
+    "mkdocs-minify-plugin>=0.8.0",
+    "mkdocs-redirects>=1.2.2",
+    "mkdocstrings[python]>=0.30.1",
+    "ruff>=0.14.10",
+]
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+reportOptionalSubscript = "none"  # "none", "information", "error"
+reportIncompatibleMethodOverride = "none"  # "none", "information", "error"
+
+[tool.ruff]
+line-length = 120
+indent-width = 4
+exclude = [".venv"]
+extend-exclude = ["tests"]
+
+[tool.ruff.lint]
+extend-select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # Pyflakes
+    "I",   # isort
+    "D",   # pydocstyle (docstring conventions)
+    "N",   # pep8-naming
+    "UP",  # pyupgrade
+    "YTT", # flake8-2020
+    "ANN", # flake8-annotations
+    "S",   # flake8-bandit
+    "B",   # flake8-bugbear
+    "A",   # flake8-builtins
+    "C4",  # flake8-comprehensions
+    "RUF", # Ruff-specific rules
+]
+
+ignore = [
+    "ANN001",  # Missing type annotation of function argument
+    "ANN002",  # Missing type annotation for `*args`
+    "ANN003",  # Missing type annotation for `**kwargs`
+    "ANN201",  # Missing return type of public function
+    "ANN202",  # Missing return type of private function
+    "ANN204",  # Missing return type annotation for special method `__init__`
+    "ANN205",  # Missing return type annotation for staticmethod
+    "D102",  # Missing docstring in public method
+    "D103",  # Missing docstring in public function
+    "D107",  # Missing docstring in `__init__`
+    "D204",  # 1 blank line required after class docstring
+    "D417",  # Missing argument description in the docstring
+    "RUF002",  # Docstring contains ambiguous `–` (EN-DASH)
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.mypy]
+ignore_missing_imports = true
+
+[tool.black]
+line-length = 120
+skip-magic-trailing-comma = true
+
+[tool.isort]
+line_length = 120
+profile = "black"
+include_trailing_comma = true
+
+[tool.pytest]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

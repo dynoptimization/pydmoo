@@ -1,0 +1,29 @@
+{
+    "build_systems": [
+        {
+            "file_patterns": ["*.py"],
+            "selector": "source.python",
+            "working_dir": "${project_path}",
+            "name": "Python3 Virtual Env",
+            "target": "terminus_exec",
+            "cancel": "terminus_cancel_build",
+            "shell_cmd": "\".venv/bin/python3\" -u \"$file\"",
+            "windows": {
+                "shell_cmd": "\".venv\\Scripts\\python.exe\" -u \"$file\"",
+            },
+            "osx": {
+                "shell_cmd": "\".venv/bin/python3\" -u \"$file\"",
+            },
+            "linux": {
+                "shell_cmd": "\".venv/bin/python3\" -u \"$file\"",
+            },
+            "env": {
+                "PYTHONIOENCODING": "utf-8",
+                "PYTHONPATH": ".",
+            },
+            "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+        },
+    ],
+    "settings": {},
+    "folders": [{ "path": "." }],
+}
