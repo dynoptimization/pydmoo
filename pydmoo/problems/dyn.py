@@ -16,20 +16,65 @@ from pymoo.core.problem import Problem
 
 
 class DynamicProblem(Problem, ABC):
+    """Abstract base class for dynamic optimization problems."""
     pass
 
 
 class DynamicApplProblem(DynamicProblem):
+    """Dynamic optimization problem for real-world applications.
 
-    def __init__(self, nt, taut, t0=50, tau=1, time=None, **kwargs):
+    This class defines dynamic optimization problems that model practical, real-world scenarios where the problem
+    characteristics change systematically over time.
+
+    Parameters
+    ----------
+    nt : int
+        Severity of change. Controls how significantly the problem changes
+        at each change point. Higher values indicate more substantial changes
+        in problem characteristics.
+    taut : int
+        Frequency of change. Specifies how often (in generations) the problem
+        undergoes changes. Lower values mean more frequent changes.
+    t0 : int, optional
+        The first change occurs after t0 generations, by default 50.
+        That is, the generation at which a change occurs is (t0+1), (t0+taut+1), etc.
+        This allows for an initial stabilization period before the first change.
+    tau : int, optional
+        Current simulation time counter (in generations), by default 1.
+    time : float, optional
+        Explicit simulation time value (overrides calculated time), by default None.
+        Used for manual time control in specific scenarios.
+    **kwargs : dict
+        Additional keyword arguments passed to the parent Problem class.
+
+    Attributes
+    ----------
+    tau : int
+        Current simulation time counter in generations.
+    nt : int
+        Severity of change at each change point.
+    taut : int
+        Frequency of change between consecutive changes.
+    t0 : int
+        Initial stabilization period before first change occurs.
+
+    Notes
+    -----
+    This class models real-world dynamic scenarios where:
+    - Changes occur at predictable intervals (every `taut` generations)
+    - Change severity is controlled by `nt` parameter
+    - Initial period `t0` allows for system stabilization
+    """
+
+    def __init__(self, nt: int, taut: int, t0: int = 50, tau: int = 1, time: float | None = None, **kwargs):
         super().__init__(**kwargs)
-        self.tau = tau
-        self.nt = nt
-        self.taut = taut
-        self.t0 = t0
+        self.tau = tau  # time counter
+        self.nt = nt  # severity of change
+        self.taut = taut  # frequency of change
+        self.t0 = t0  # Initial time offset
         self._time = time
 
-    def tic(self, elapsed=1):
+    def tic(self, elapsed: int = 1) -> None:
 
         # increase the time counter by one
         self.tau += elapsed
@@ -38,7 +83,7 @@ class DynamicApplProblem(DynamicProblem):
         self.__dict__["cache"] = {}
 
     @property
-    def time(self):
+    def time(self) -> float:
         if self._time is not None:
             return self._time
         else:
@@ -54,7 +99,7 @@ class DynamicApplProblem(DynamicProblem):
             return delta_time * count
 
     @time.setter
-    def time(self, value):
+    def time(self, value: float) -> None:
         self._time = value
 
     def update_to_next_time(self):
@@ -77,12 +122,59 @@ class DynamicApplProblem(DynamicProblem):
 
 
 class DynamicTestProblem(DynamicProblem):
+    """Dynamic optimization problem for testing and benchmarking.
+
+    Parameters
+    ----------
+    nt : int
+        Severity of change. Controls how significantly the problem changes
+        at each change point. Higher values indicate more substantial changes
+        in problem characteristics.
+    taut : int
+        Frequency of change. Specifies how often (in generations) the problem
+        undergoes changes. Lower values mean more frequent changes.
+    t0 : int, optional
+        The first change occurs after t0 generations, by default 50.
+        That is, the generation at which a change occurs is (t0+1), (t0+taut+1), etc.
+        This allows for an initial stabilization period before the first change.
+    tau : int, optional
+        Current simulation time counter (in generations), by default 1.
+    time : float, optional
+        Explicit simulation time value (overrides calculated time), by default None.
+        Used for manual time control in specific scenarios.
+    add_time_perturbation : bool, optional
+        If True, adds perturbations to the time calculation, by default False.
+    **kwargs : dict
+        Additional keyword arguments passed to the parent Problem class.
+
+    Attributes
+    ----------
+    tau : int
+        Current simulation time counter in generations.
+    nt : int
+        Severity of change at each change point.
+    taut : int
+        Frequency of change between consecutive changes.
+    t0 : int
+        Initial stabilization period before first change occurs.
+    add_time_perturbation : bool
+        Flag indicating whether to add stochastic perturbations.
+
+    Notes
+    -----
+    This class is designed for testing scenarios where:
+    - Changes occur at predictable intervals (every `taut` generations)
+    - Change severity is controlled by `nt` parameter
+    - Initial period `t0` allows for system stabilization
+    - Stochastic perturbations can be added for more complex testing
+    - Reproducibility is important for benchmarking
+    """
 
     def __init__(self, nt, taut, t0=50, tau=1, time=None, add_time_perturbation=False, **kwargs):
         super().__init__(**kwargs)
-        self.tau = tau
-        self.nt = nt
-        self.taut = taut
+        self.tau = tau  # time counter
+        self.nt = nt  # severity of change
+        self.taut = taut  # frequency of change
         self.t0 = t0  # Initial time offset - added by DynOpt Team
         self._time = time
 
