@@ -138,7 +138,7 @@ class GTS1(GTS):
     Attributes
     ----------
     name : str
-        Problem name, default is 'GTS3'
+        Problem name, default is 'GTS1'
     n_var : int
         Number of decision variables
     n_obj : int
