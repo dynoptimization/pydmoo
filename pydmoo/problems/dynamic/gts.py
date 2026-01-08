@@ -65,7 +65,7 @@ class GTS(DynamicTestProblem):
     def __init__(self,
                  part_idx,
                  bounds,
-                 R_case="one",
+                 matrix_case="one",
                  add_time_perturbation=True,
                  n_var=10,
                  nt=10,
@@ -85,22 +85,22 @@ class GTS(DynamicTestProblem):
         self.sub_vec_1, self.sub_vec_2, self.sub_vec_3 = self._partition_dimension(part_idx)
 
         # positive semidefinite matrices
-        if R_case == "one":
-            self.R_2 = np.eye(len(self.sub_vec_2))
-            self.R_3 = np.eye(len(self.sub_vec_3))
-        elif R_case == "two":
-            self.R_2 = np.diag([i + 1 for i in range(len(self.sub_vec_2))])
-            self.R_3 = np.diag([i + 1 for i in range(len(self.sub_vec_3))])
-        elif R_case == "three":
+        if matrix_case == "one":
+            self.matrix_2 = np.eye(len(self.sub_vec_2))
+            self.matrix_3 = np.eye(len(self.sub_vec_3))
+        elif matrix_case == "two":
+            self.matrix_2 = np.diag([i + 1 for i in range(len(self.sub_vec_2))])
+            self.matrix_3 = np.diag([i + 1 for i in range(len(self.sub_vec_3))])
+        elif matrix_case == "three":
             diag_matrix = np.diag(len(self.sub_vec_2) + np.arange(len(self.sub_vec_2)))
             ones_matrix = np.ones((len(self.sub_vec_2), len(self.sub_vec_2)))
-            self.R_2 = np.where(np.eye(len(self.sub_vec_2), dtype=bool), diag_matrix, ones_matrix)
+            self.matrix_2 = np.where(np.eye(len(self.sub_vec_2), dtype=bool), diag_matrix, ones_matrix)
 
             diag_matrix = np.diag(len(self.sub_vec_3) + np.arange(len(self.sub_vec_3)))
             ones_matrix = np.ones((len(self.sub_vec_3), len(self.sub_vec_3)))
-            self.R_3 = np.where(np.eye(len(self.sub_vec_3), dtype=bool), diag_matrix, ones_matrix)
+            self.matrix_3 = np.where(np.eye(len(self.sub_vec_3), dtype=bool), diag_matrix, ones_matrix)
         else:
-            raise ValueError(f"{R_case} must be `one`, `two` or `three`.")
+            raise ValueError(f"{matrix_case} must be `one`, `two` or `three`.")
 
         # norm
         self.p = 1
@@ -113,10 +113,10 @@ class GTS(DynamicTestProblem):
         self.xu[self.sub_vec_3] = bounds[2][1]
 
     def _calc_pareto_front(self, *args, **kwargs):
-        return Remote.get_instance().load("pydmoo", "pf", "GTS", f"{str(self.__class__.__name__)}.pf")
+        return Remote.get_instance().load("pydmoo", "pf", "GTS", f"{self.__class__.__name__}.pf")
 
     def _calc_pareto_set(self, *args, **kwargs):
-        return Remote.get_instance().load("pydmoo", "ps", "GTS", f"{str(self.__class__.__name__)}.ps")
+        return Remote.get_instance().load("pydmoo", "ps", "GTS", f"{self.__class__.__name__}.ps")
 
     # Designed to handle time-linkage properties within the GTS test suites.
     def cal(self, F):
@@ -200,8 +200,8 @@ class GTS1(GTS):
         x2, x3 = (x[:, self.sub_vec_2] - xi.reshape(-1, 1)), (x[:, self.sub_vec_3] - xj.reshape(-1, 1))
 
         # quadratic form
-        diag_x2_R2_x2T = np.einsum('ij,jk,ik->i', x2, self.R_2, x2)
-        diag_x3_R3_x3T = np.einsum('ij,jk,ik->i', x3, self.R_3, x3)
+        diag_x2_R2_x2T = np.einsum('ij,jk,ik->i', x2, self.matrix_2, x2)
+        diag_x3_R3_x3T = np.einsum('ij,jk,ik->i', x3, self.matrix_3, x3)
         g = 1 + np.power(diag_x2_R2_x2T, self.p) + np.power(diag_x3_R3_x3T, self.p)
 
         f1 = x[:, 0]
@@ -239,8 +239,8 @@ class GTS2(GTS):
         x2, x3 = (x[:, self.sub_vec_2] - xi.reshape(-1, 1)), (x[:, self.sub_vec_3] - xj.reshape(-1, 1))
 
         # quadratic form
-        diag_x2_R2_x2T = np.einsum('ij,jk,ik->i', x2, self.R_2, x2)
-        diag_x3_R3_x3T = np.einsum('ij,jk,ik->i', x3, self.R_3, x3)
+        diag_x2_R2_x2T = np.einsum('ij,jk,ik->i', x2, self.matrix_2, x2)
+        diag_x3_R3_x3T = np.einsum('ij,jk,ik->i', x3, self.matrix_3, x3)
         g = 1 + np.power(diag_x2_R2_x2T, self.p) + np.power(diag_x3_R3_x3T, self.p)
 
         f1 = 0.5 * x[:, 0] + x[:, 1]
@@ -278,8 +278,8 @@ class GTS3(GTS):
         x2, x3 = (x[:, self.sub_vec_2] - xi.reshape(-1, 1)), (x[:, self.sub_vec_3] - xj.reshape(-1, 1))
 
         # quadratic form
-        diag_x2_R2_x2T = np.einsum('ij,jk,ik->i', x2, self.R_2, x2)
-        diag_x3_R3_x3T = np.einsum('ij,jk,ik->i', x3, self.R_3, x3)
+        diag_x2_R2_x2T = np.einsum('ij,jk,ik->i', x2, self.matrix_2, x2)
+        diag_x3_R3_x3T = np.einsum('ij,jk,ik->i', x3, self.matrix_3, x3)
         g = 1 + np.power(diag_x2_R2_x2T, self.p) + np.power(diag_x3_R3_x3T, self.p)
 
         f1 = g * np.power(x[:, 0] + 0.1 * np.sin(3 * np.pi * x[:, 0]), beta_t(self.time))
@@ -313,8 +313,8 @@ class GTS4(GTS):
         x2, x3 = (x[:, self.sub_vec_2] - xi.reshape(-1, 1)), (x[:, self.sub_vec_3] - xj.reshape(-1, 1))
 
         # quadratic form
-        diag_x2_R2_x2T = np.einsum('ij,jk,ik->i', x2, self.R_2, x2)
-        diag_x3_R3_x3T = np.einsum('ij,jk,ik->i', x3, self.R_3, x3)
+        diag_x2_R2_x2T = np.einsum('ij,jk,ik->i', x2, self.matrix_2, x2)
+        diag_x3_R3_x3T = np.einsum('ij,jk,ik->i', x3, self.matrix_3, x3)
         g = 1 + np.power(diag_x2_R2_x2T, self.p) + np.power(diag_x3_R3_x3T, self.p)
 
         g += (-0.5 + 0.25 * np.sin(0.3 * np.pi * self.time))
@@ -352,8 +352,8 @@ class GTS5(GTS):
         x2, x3 = (x[:, self.sub_vec_2] - xi.reshape(-1, 1)), (x[:, self.sub_vec_3] - xj.reshape(-1, 1))
 
         # quadratic form
-        diag_x2_R2_x2T = np.einsum('ij,jk,ik->i', x2, self.R_2, x2)
-        diag_x3_R3_x3T = np.einsum('ij,jk,ik->i', x3, self.R_3, x3)
+        diag_x2_R2_x2T = np.einsum('ij,jk,ik->i', x2, self.matrix_2, x2)
+        diag_x3_R3_x3T = np.einsum('ij,jk,ik->i', x3, self.matrix_3, x3)
         g = 1 + np.power(diag_x2_R2_x2T, self.p) + np.power(diag_x3_R3_x3T, self.p)
 
         g += 0.5 + 0.5 * G_t(self.time)
@@ -396,8 +396,8 @@ class GTS6(GTS):
         x2, x3 = (x[:, self.sub_vec_2] - xi.reshape(-1, 1)), (x[:, self.sub_vec_3] - xj.reshape(-1, 1))
 
         # quadratic form
-        diag_x2_R2_x2T = np.einsum('ij,jk,ik->i', x2, self.R_2, x2)
-        diag_x3_R3_x3T = np.einsum('ij,jk,ik->i', x3, self.R_3, x3)
+        diag_x2_R2_x2T = np.einsum('ij,jk,ik->i', x2, self.matrix_2, x2)
+        diag_x3_R3_x3T = np.einsum('ij,jk,ik->i', x3, self.matrix_3, x3)
         g = 1 + np.power(diag_x2_R2_x2T, self.p) + np.power(diag_x3_R3_x3T, self.p)
 
         f1 = x[:, 0]
@@ -429,8 +429,8 @@ class GTS7(GTS):
         x2, x3 = (x[:, self.sub_vec_2] - xi.reshape(-1, 1)), (x[:, self.sub_vec_3] - xj.reshape(-1, 1))
 
         # quadratic form
-        diag_x2_R2_x2T = np.einsum('ij,jk,ik->i', x2, self.R_2, x2)
-        diag_x3_R3_x3T = np.einsum('ij,jk,ik->i', x3, self.R_3, x3)
+        diag_x2_R2_x2T = np.einsum('ij,jk,ik->i', x2, self.matrix_2, x2)
+        diag_x3_R3_x3T = np.einsum('ij,jk,ik->i', x3, self.matrix_3, x3)
         g = 1 + np.power(diag_x2_R2_x2T, self.p) + np.power(diag_x3_R3_x3T, self.p)
 
         f1 = g * np.power(np.abs(x[:, 0] - a_t(self.time)), H_t(self.time))
@@ -465,8 +465,8 @@ class GTS8(GTS):
         x2, x3 = (x[:, self.sub_vec_2] - xi.reshape(-1, 1)), (x[:, self.sub_vec_3] - xj.reshape(-1, 1))
 
         # quadratic form
-        diag_x2_R2_x2T = np.einsum('ij,jk,ik->i', x2, self.R_2, x2)
-        diag_x3_R3_x3T = np.einsum('ij,jk,ik->i', x3, self.R_3, x3)
+        diag_x2_R2_x2T = np.einsum('ij,jk,ik->i', x2, self.matrix_2, x2)
+        diag_x3_R3_x3T = np.einsum('ij,jk,ik->i', x3, self.matrix_3, x3)
         g = 1 + np.power(diag_x2_R2_x2T, self.p) + np.power(diag_x3_R3_x3T, self.p)
 
         g += 0.25 * np.abs(np.cos(0.3 * np.pi * self.time))
@@ -506,8 +506,8 @@ class GTS9(GTS):
         x2, x3 = (x[:, self.sub_vec_2] - xi.reshape(-1, 1)), (x[:, self.sub_vec_3] - xj.reshape(-1, 1))
 
         # quadratic form
-        diag_x2_R2_x2T = np.einsum('ij,jk,ik->i', x2, self.R_2, x2)
-        diag_x3_R3_x3T = np.einsum('ij,jk,ik->i', x3, self.R_3, x3)
+        diag_x2_R2_x2T = np.einsum('ij,jk,ik->i', x2, self.matrix_2, x2)
+        diag_x3_R3_x3T = np.einsum('ij,jk,ik->i', x3, self.matrix_3, x3)
         g = 1 + np.power(diag_x2_R2_x2T, self.p) + np.power(diag_x3_R3_x3T, self.p)
 
         g += np.abs(np.cos(0.27 * np.pi * self.time))
@@ -552,8 +552,8 @@ class GTS10(GTS):
         x2, x3 = (x[:, self.sub_vec_2] - xi.reshape(-1, 1)), (x[:, self.sub_vec_3] - xj.reshape(-1, 1))
 
         # quadratic form
-        diag_x2_R2_x2T = np.einsum('ij,jk,ik->i', x2, self.R_2, x2)
-        diag_x3_R3_x3T = np.einsum('ij,jk,ik->i', x3, self.R_3, x3)
+        diag_x2_R2_x2T = np.einsum('ij,jk,ik->i', x2, self.matrix_2, x2)
+        diag_x3_R3_x3T = np.einsum('ij,jk,ik->i', x3, self.matrix_3, x3)
         g = 1 + np.power(diag_x2_R2_x2T, self.p) + np.power(diag_x3_R3_x3T, self.p)
 
         f1 = g * np.cos(0.5 * np.pi * x[:, 0]) ** 2
@@ -601,8 +601,8 @@ class GTS11(GTS):
         x2, x3 = (x[:, self.sub_vec_2] - xi.reshape(-1, 1)), (x[:, self.sub_vec_3] - xj.reshape(-1, 1))
 
         # quadratic form
-        diag_x2_R2_x2T = np.einsum('ij,jk,ik->i', x2, self.R_2, x2)
-        diag_x3_R3_x3T = np.einsum('ij,jk,ik->i', x3, self.R_3, x3)
+        diag_x2_R2_x2T = np.einsum('ij,jk,ik->i', x2, self.matrix_2, x2)
+        diag_x3_R3_x3T = np.einsum('ij,jk,ik->i', x3, self.matrix_3, x3)
         g = 1 + np.power(diag_x2_R2_x2T, self.p) + np.power(diag_x3_R3_x3T, self.p)
 
         y = y_t(x[:, 0], self.time)
@@ -632,110 +632,110 @@ class GTS11(GTS):
 
 
 class GTS1_2(GTS1):
-    def __init__(self, R_case="two", **kwargs):
-        super().__init__(R_case=R_case, **kwargs)
+    def __init__(self, matrix_case="two", **kwargs):
+        super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS2_2(GTS1):
-    def __init__(self, R_case="two", **kwargs):
-        super().__init__(R_case=R_case, **kwargs)
+    def __init__(self, matrix_case="two", **kwargs):
+        super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS3_2(GTS1):
-    def __init__(self, R_case="two", **kwargs):
-        super().__init__(R_case=R_case, **kwargs)
+    def __init__(self, matrix_case="two", **kwargs):
+        super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS4_2(GTS1):
-    def __init__(self, R_case="two", **kwargs):
-        super().__init__(R_case=R_case, **kwargs)
+    def __init__(self, matrix_case="two", **kwargs):
+        super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS5_2(GTS1):
-    def __init__(self, R_case="two", **kwargs):
-        super().__init__(R_case=R_case, **kwargs)
+    def __init__(self, matrix_case="two", **kwargs):
+        super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS6_2(GTS1):
-    def __init__(self, R_case="two", **kwargs):
-        super().__init__(R_case=R_case, **kwargs)
+    def __init__(self, matrix_case="two", **kwargs):
+        super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS7_2(GTS1):
-    def __init__(self, R_case="two", **kwargs):
-        super().__init__(R_case=R_case, **kwargs)
+    def __init__(self, matrix_case="two", **kwargs):
+        super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS8_2(GTS1):
-    def __init__(self, R_case="two", **kwargs):
-        super().__init__(R_case=R_case, **kwargs)
+    def __init__(self, matrix_case="two", **kwargs):
+        super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS9_2(GTS1):
-    def __init__(self, R_case="two", **kwargs):
-        super().__init__(R_case=R_case, **kwargs)
+    def __init__(self, matix_case="two", **kwargs):
+        super().__init__(matrix_case=matix_case, **kwargs)
 
 
 class GTS10_2(GTS1):
-    def __init__(self, R_case="two", **kwargs):
-        super().__init__(R_case=R_case, **kwargs)
+    def __init__(self, matrix_case="two", **kwargs):
+        super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS11_2(GTS1):
-    def __init__(self, R_case="two", **kwargs):
-        super().__init__(R_case=R_case, **kwargs)
+    def __init__(self, matrix_case="two", **kwargs):
+        super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS1_3(GTS1):
-    def __init__(self, R_case="three", **kwargs):
-        super().__init__(R_case=R_case, **kwargs)
+    def __init__(self, matrix_case="three", **kwargs):
+        super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS2_3(GTS1):
-    def __init__(self, R_case="three", **kwargs):
-        super().__init__(R_case=R_case, **kwargs)
+    def __init__(self, matrix_case="three", **kwargs):
+        super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS3_3(GTS1):
-    def __init__(self, R_case="three", **kwargs):
-        super().__init__(R_case=R_case, **kwargs)
+    def __init__(self, matrix_case="three", **kwargs):
+        super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS4_3(GTS1):
-    def __init__(self, R_case="three", **kwargs):
-        super().__init__(R_case=R_case, **kwargs)
+    def __init__(self, matrix_case="three", **kwargs):
+        super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS5_3(GTS1):
-    def __init__(self, R_case="three", **kwargs):
-        super().__init__(R_case=R_case, **kwargs)
+    def __init__(self, matrix_case="three", **kwargs):
+        super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS6_3(GTS1):
-    def __init__(self, R_case="three", **kwargs):
-        super().__init__(R_case=R_case, **kwargs)
+    def __init__(self, matrix_case="three", **kwargs):
+        super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS7_3(GTS1):
-    def __init__(self, R_case="three", **kwargs):
-        super().__init__(R_case=R_case, **kwargs)
+    def __init__(self, matrix_case="three", **kwargs):
+        super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS8_3(GTS1):
-    def __init__(self, R_case="three", **kwargs):
-        super().__init__(R_case=R_case, **kwargs)
+    def __init__(self, matrix_case="three", **kwargs):
+        super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS9_3(GTS1):
-    def __init__(self, R_case="three", **kwargs):
-        super().__init__(R_case=R_case, **kwargs)
+    def __init__(self, matrix_case="three", **kwargs):
+        super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS10_3(GTS1):
-    def __init__(self, R_case="three", **kwargs):
-        super().__init__(R_case=R_case, **kwargs)
+    def __init__(self, matrix_case="three", **kwargs):
+        super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS11_3(GTS1):
-    def __init__(self, R_case="three", **kwargs):
-        super().__init__(R_case=R_case, **kwargs)
+    def __init__(self, matrix_case="three", **kwargs):
+        super().__init__(matrix_case=matrix_case, **kwargs)
