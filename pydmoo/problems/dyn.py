@@ -61,9 +61,10 @@ class DynamicApplProblem(DynamicProblem):
     Notes
     -----
     This class models real-world dynamic scenarios where:
-        - Changes occur at predictable intervals (every `taut` generations)
-        - Change severity is controlled by `nt` parameter
-        - Initial period `t0` allows for system stabilization
+
+    - Changes occur at predictable intervals (every `taut` generations)
+    - Change severity is controlled by `nt` parameter
+    - Initial period `t0` allows for system stabilization
     """
 
     def __init__(self, nt: int, taut: int, t0: int = 50, tau: int = 1, time: float | None = None, **kwargs):
