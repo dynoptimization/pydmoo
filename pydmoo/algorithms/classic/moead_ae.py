@@ -9,6 +9,8 @@ from pydmoo.core.inverse import closed_form_solution
 class MOEADAE(DMOEAD):
     """Autoencoding.
 
+    References
+    ----------
     Feng, L., Zhou, W., Liu, W., Ong, Y.-S., and Tan, K. C. (2022).
     Solving dynamic multiobjective problem via autoencoding evolutionary search.
     IEEE Transactions on Cybernetics, 52(5), 2649–2662.
@@ -20,6 +22,7 @@ class MOEADAE(DMOEAD):
         super().__init__(**kwargs)
 
     def _response_change(self):
+        """Response."""
         pop = self.pop
         X = pop.get("X")
 
