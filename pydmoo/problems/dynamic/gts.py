@@ -183,11 +183,11 @@ class GTS1(GTS):
 
     - Pareto set (PS)
 
-    ![GTS1 PS](../../figs/PS/GTS1.png)
+    ![GTS1 PS](../../figs/PS/GTS1.png){: width="400px" height="300px"}
 
     - Pareto front (PF)
 
-    ![GTS1 PF](../../figs/PF/GTS1.png)
+    ![GTS1 PF](../../figs/PF/GTS1.png){: width="400px" height="300px"}
     """
     def __init__(self, **kwargs):
         super().__init__(part_idx=1, bounds=((0, 1), (-1, 1), (-1, 2)), **kwargs)
@@ -226,10 +226,38 @@ class GTS1(GTS):
 
 
 class GTS2(GTS):
+    r"""GTS2 test problem.
+
+    - Inherits all parameters from parent class GTS.
+
+    Attributes
+    ----------
+    name : str
+        Problem name, default is 'GTS1'
+    n_var : int
+        Number of decision variables
+    n_obj : int
+        Number of objective functions
+    time_linkage : bool
+        Whether the problem has time linkage
+
+    Notes
+    -----
+    - Mathematical Formulation:
+
+    - Pareto set (PS)
+
+    ![GTS2 PS](../../figs/PS/GTS2.png){: width="400px" height="300px"}
+
+    - Pareto front (PF)
+
+    ![GTS2 PF](../../figs/PF/GTS2.png){: width="400px" height="300px"}
+    """
     def __init__(self, **kwargs):
         super().__init__(part_idx=2, bounds=((0, 1), (0, 1), (-1, 2)), **kwargs)
 
     def _evaluate(self, x, out, *args, **kwargs):
+        """Evaluate."""
         t = 3 * np.pi * self.time ** 2
         cot = np.cos(t) / (np.sin(t) + (np.sin(t) == 0) * 1e-32)
 
@@ -249,6 +277,7 @@ class GTS2(GTS):
         out["F"] = np.column_stack([f1, f2])
 
     def _calc_pareto_front(self, *args, n_pareto_points=100, **kwargs):
+        """Pareto front."""
         H = 20
         x1, x2 = np.meshgrid(np.linspace(0, 1, H), np.linspace(0, 1, H), indexing='xy')
 
@@ -257,6 +286,7 @@ class GTS2(GTS):
         return get_PF(np.array([f1, f2]), False)
 
     def _calc_pareto_set(self, *args, n_pareto_points=100, **kwargs):
+        """Pareto set."""
         t = 3 * np.pi * self.time ** 2
         cot = np.cos(t) / (np.sin(t) + (np.sin(t) == 0) * 1e-32)
 
@@ -268,10 +298,38 @@ class GTS2(GTS):
 
 
 class GTS3(GTS):
+    r"""GTS3 test problem.
+
+    - Inherits all parameters from parent class GTS.
+
+    Attributes
+    ----------
+    name : str
+        Problem name, default is 'GTS1'
+    n_var : int
+        Number of decision variables
+    n_obj : int
+        Number of objective functions
+    time_linkage : bool
+        Whether the problem has time linkage
+
+    Notes
+    -----
+    - Mathematical Formulation:
+
+    - Pareto set (PS)
+
+    ![GTS3 PS](../../figs/PS/GTS3.png){: width="400px" height="300px"}
+
+    - Pareto front (PF)
+
+    ![GTS3 PF](../../figs/PF/GTS3.png){: width="400px" height="300px"}
+    """
     def __init__(self, **kwargs):
         super().__init__(part_idx=1, bounds=((0, 1), (-1, 1), (-1, 2)), **kwargs)
 
     def _evaluate(self, x, out, *args, **kwargs):
+        """Evaluate."""
         xi = (G_t(self.time) * np.sin(4 * np.pi * x[:, 0])) / (1 + np.abs(G_t(self.time)))
         xj = G_t(self.time) + np.power(x[:, 0], H_t(self.time))
 
@@ -288,6 +346,7 @@ class GTS3(GTS):
         out["F"] = np.column_stack([f1, f2])
 
     def _calc_pareto_front(self, *args, n_pareto_points=100, **kwargs):
+        """Pareto front."""
         x = np.linspace(0, 1, n_pareto_points)
         f1 = np.power(x + 0.1 * np.sin(3 * np.pi * x), beta_t(self.time))
         f2 = np.power(1 - x + 0.1 * np.sin(3 * np.pi * x), beta_t(self.time))
@@ -295,6 +354,7 @@ class GTS3(GTS):
         return get_PF(np.array([f1, f2]), True)
 
     def _calc_pareto_set(self, *args, n_pareto_points=100, **kwargs):
+        """Pareto set."""
         x_vec1 = np.linspace(0, 1, n_pareto_points)
         x_vec2 = (G_t(self.time) * np.sin(4 * np.pi * x_vec1)) / (1 + np.abs(G_t(self.time)))
         x_vec3 = G_t(self.time) + np.power(x_vec1, H_t(self.time))
@@ -303,10 +363,38 @@ class GTS3(GTS):
 
 
 class GTS4(GTS):
+    r"""GTS4 test problem.
+
+    - Inherits all parameters from parent class GTS.
+
+    Attributes
+    ----------
+    name : str
+        Problem name, default is 'GTS1'
+    n_var : int
+        Number of decision variables
+    n_obj : int
+        Number of objective functions
+    time_linkage : bool
+        Whether the problem has time linkage
+
+    Notes
+    -----
+    - Mathematical Formulation:
+
+    - Pareto set (PS)
+
+    ![GTS4 PS](../../figs/PS/GTS4.png){: width="400px" height="300px"}
+
+    - Pareto front (PF)
+
+    ![GTS4 PF](../../figs/PF/GTS4.png){: width="400px" height="300px"}
+    """
     def __init__(self, **kwargs):
         super().__init__(part_idx=1, bounds=((0, 1), (0, 1), (-1, 1)), **kwargs)
 
     def _evaluate(self, x, out, *args, **kwargs):
+        """Evaluate."""
         xi = np.abs(G_t(self.time))
         xj = (G_t(self.time) * np.sin(4 * np.pi * x[:, 0])) / (1 + np.abs(G_t(self.time)))
 
@@ -325,6 +413,7 @@ class GTS4(GTS):
         out["F"] = np.column_stack([f1, f2])
 
     def _calc_pareto_front(self, *args, n_pareto_points=100, **kwargs):
+        """Pareto front."""
         x = np.linspace(0, 1, n_pareto_points)
         g = 1 + (-0.5 + 0.25 * np.sin(0.3 * np.pi * self.time))
 
@@ -334,6 +423,7 @@ class GTS4(GTS):
         return np.array([f1, f2]).T
 
     def _calc_pareto_set(self, *args, n_pareto_points=100, **kwargs):
+        """Pareto set."""
         x_vec1 = np.linspace(0, 1, n_pareto_points)
         x_vec2 = np.full(len(x_vec1), np.abs(G_t(self.time)))
         x_vec3 = (G_t(self.time) * np.sin(4 * np.pi * x_vec1)) / (1 + np.abs(G_t(self.time)))
@@ -342,10 +432,38 @@ class GTS4(GTS):
 
 
 class GTS5(GTS):
+    r"""GTS5 test problem.
+
+    - Inherits all parameters from parent class GTS.
+
+    Attributes
+    ----------
+    name : str
+        Problem name, default is 'GTS1'
+    n_var : int
+        Number of decision variables
+    n_obj : int
+        Number of objective functions
+    time_linkage : bool
+        Whether the problem has time linkage
+
+    Notes
+    -----
+    - Mathematical Formulation:
+
+    - Pareto set (PS)
+
+    ![GTS5 PS](../../figs/PS/GTS5.png){: width="400px" height="300px"}
+
+    - Pareto front (PF)
+
+    ![GTS5 PF](../../figs/PF/GTS5.png){: width="400px" height="300px"}
+    """
     def __init__(self, **kwargs):
         super().__init__(part_idx=2, bounds=((0, 1), (-1, 1), (-1, 2)), **kwargs)
 
     def _evaluate(self, x, out, *args, **kwargs):
+        """Evaluate."""
         xi = np.cos(0.5 * np.pi * self.time)
         xj = G_t(self.time) + np.power(x[:, 0], H_t(self.time))
 
@@ -366,6 +484,7 @@ class GTS5(GTS):
         out["F"] = np.column_stack([f1, f2])
 
     def _calc_pareto_front(self, *args, n_pareto_points=100, **kwargs):
+        """Pareto front."""
         H = 20
         x1, x2 = np.meshgrid(np.linspace(0, 1, H), np.linspace(0, 1, H), indexing='xy')
         g = 1 + 0.5 + 0.5 * G_t(self.time)
@@ -378,6 +497,7 @@ class GTS5(GTS):
         return get_PF(np.array([f1, f2]), True)
 
     def _calc_pareto_set(self, *args, n_pareto_points=100, **kwargs):
+        """Pareto set."""
         x_vec1 = np.linspace(0, 1, n_pareto_points)
         x_vec2 = np.full(len(x_vec1), np.cos(0.5 * np.pi * self.time))
         x_vec3 = G_t(self.time) + np.power(x_vec1, H_t(self.time))
@@ -386,10 +506,38 @@ class GTS5(GTS):
 
 
 class GTS6(GTS):
+    r"""GTS6 test problem.
+
+    - Inherits all parameters from parent class GTS.
+
+    Attributes
+    ----------
+    name : str
+        Problem name, default is 'GTS1'
+    n_var : int
+        Number of decision variables
+    n_obj : int
+        Number of objective functions
+    time_linkage : bool
+        Whether the problem has time linkage
+
+    Notes
+    -----
+    - Mathematical Formulation:
+
+    - Pareto set (PS)
+
+    ![GTS6 PS](../../figs/PS/GTS6.png){: width="400px" height="300px"}
+
+    - Pareto front (PF)
+
+    ![GTS6 PF](../../figs/PF/GTS6.png){: width="400px" height="300px"}
+    """
     def __init__(self, **kwargs):
         super().__init__(part_idx=1, bounds=((0, 1), (-1, 1), (-1, 2)), **kwargs)
 
     def _evaluate(self, x, out, *args, **kwargs):
+        """Evaluate."""
         xi = self.time_linkage * np.cos(0.5 * np.pi * self.time)
         xj = self.time_linkage * (G_t(self.time) + np.power(x[:, 0], H_t(self.time)))
 
@@ -406,11 +554,13 @@ class GTS6(GTS):
         out["F"] = np.column_stack([f1, f2])
 
     def _calc_pareto_front(self, *args, n_pareto_points=100, **kwargs):
+        """Pareto front."""
         f1 = np.linspace(0, 1, n_pareto_points)
         f2 = 1 - np.power(f1, H_t(self.time))
         return np.array([f1, f2]).T
 
     def _calc_pareto_set(self, *args, n_pareto_points=100, **kwargs):
+        """Pareto set."""
         x_vec1 = np.linspace(0, 1, n_pareto_points)
         x_vec2 = np.full(len(x_vec1), np.cos(0.5 * np.pi * self.time))
         x_vec3 = G_t(self.time) + np.power(x_vec1, H_t(self.time))
@@ -419,10 +569,38 @@ class GTS6(GTS):
 
 
 class GTS7(GTS):
+    r"""GTS7 test problem.
+
+    - Inherits all parameters from parent class GTS.
+
+    Attributes
+    ----------
+    name : str
+        Problem name, default is 'GTS1'
+    n_var : int
+        Number of decision variables
+    n_obj : int
+        Number of objective functions
+    time_linkage : bool
+        Whether the problem has time linkage
+
+    Notes
+    -----
+    - Mathematical Formulation:
+
+    - Pareto set (PS)
+
+    ![GTS7 PS](../../figs/PS/GTS7.png){: width="400px" height="300px"}
+
+    - Pareto front (PF)
+
+    ![GTS7 PF](../../figs/PF/GTS7.png){: width="400px" height="300px"}
+    """
     def __init__(self, **kwargs):
         super().__init__(part_idx=1, bounds=((-1, 2.5), (-1, 1), (0, 1)), **kwargs)
 
     def _evaluate(self, x, out, *args, **kwargs):
+        """Evaluate."""
         xi = self.time_linkage * np.cos(0.5 * np.pi * self.time)
         xj = self.time_linkage * 1 / (1 + np.exp(alpha_t(self.time) * (x[:, 0] - 0.5)))
 
@@ -439,6 +617,7 @@ class GTS7(GTS):
         out["F"] = np.column_stack([f1, f2])
 
     def _calc_pareto_front(self, *args, n_pareto_points=100, **kwargs):
+        """Pareto front."""
         x = np.linspace(a_t(self.time), a_t(self.time) + b_t(self.time), n_pareto_points)
 
         f1 = np.power(np.abs(x - a_t(self.time)), H_t(self.time))
@@ -447,6 +626,7 @@ class GTS7(GTS):
         return np.array([f1, f2]).T
 
     def _calc_pareto_set(self, *args, n_pareto_points=100, **kwargs):
+        """Pareto set."""
         x_vec1 = np.linspace(a_t(self.time), a_t(self.time) + b_t(self.time), n_pareto_points)
         x_vec2 = np.full(len(x_vec1), np.cos(0.5 * np.pi * self.time))
         x_vec3 = 1 / (1 + np.exp(alpha_t(self.time) * (x_vec1 - 0.5)))
@@ -455,10 +635,38 @@ class GTS7(GTS):
 
 
 class GTS8(GTS):
+    r"""GTS8 test problem.
+
+    - Inherits all parameters from parent class GTS.
+
+    Attributes
+    ----------
+    name : str
+        Problem name, default is 'GTS1'
+    n_var : int
+        Number of decision variables
+    n_obj : int
+        Number of objective functions
+    time_linkage : bool
+        Whether the problem has time linkage
+
+    Notes
+    -----
+    - Mathematical Formulation:
+
+    - Pareto set (PS)
+
+    ![GTS8 PS](../../figs/PS/GTS8.png){: width="400px" height="300px"}
+
+    - Pareto front (PF)
+
+    ![GTS8 PF](../../figs/PF/GTS8.png){: width="400px" height="300px"}
+    """
     def __init__(self, **kwargs):
         super().__init__(part_idx=2, bounds=((0, 1), (0, 1), (-1, 2)), **kwargs)
 
     def _evaluate(self, x, out, *args, **kwargs):
+        """Evaluate."""
         xi = self.time_linkage * 1 / (1 + np.exp(alpha_t(self.time) * (x[:, 0] - 0.5)))
         xj = self.time_linkage * (G_t(self.time) + np.power(x[:, 0], H_t(self.time)))
 
@@ -477,6 +685,7 @@ class GTS8(GTS):
         out["F"] = np.column_stack([f1, f2])
 
     def _calc_pareto_front(self, *args, n_pareto_points=100, **kwargs):
+        """Pareto front."""
         H = 20
         x1, x2 = np.meshgrid(np.linspace(0, 1, H), np.linspace(0, 1, H), indexing='xy')
 
@@ -486,6 +695,7 @@ class GTS8(GTS):
         return get_PF(np.array([f1, f2]), False)
 
     def _calc_pareto_set(self, *args, n_pareto_points=100, **kwargs):
+        """Pareto set."""
         x_vec1 = np.linspace(0, 1, n_pareto_points)
         x_vec2 = 1 / (1 + np.exp(alpha_t(self.time) * (x_vec1 - 0.5)))
         x_vec3 = G_t(self.time) + np.power(x_vec1, H_t(self.time))
@@ -495,11 +705,39 @@ class GTS8(GTS):
 
 # modified DF12
 class GTS9(GTS):
+    r"""GTS9 test problem.
+
+    - Inherits all parameters from parent class GTS.
+
+    Attributes
+    ----------
+    name : str
+        Problem name, default is 'GTS1'
+    n_var : int
+        Number of decision variables
+    n_obj : int
+        Number of objective functions
+    time_linkage : bool
+        Whether the problem has time linkage
+
+    Notes
+    -----
+    - Mathematical Formulation:
+
+    - Pareto set (PS)
+
+    ![GTS9 PS](../../figs/PS/GTS9.png){: width="400px" height="300px"}
+
+    - Pareto front (PF)
+
+    ![GTS9 PF](../../figs/PF/GTS9.png){: width="400px" height="300px"}
+    """
     def __init__(self, **kwargs):
         super().__init__(part_idx=2, bounds=((0, 1), (0, 1), (-1, 1)), **kwargs)
         self.n_obj = 3
 
     def _evaluate(self, x, out, *args, **kwargs):
+        """Evaluate."""
         xi = 1 / (1 + np.exp(alpha_t(self.time) * (x[:, 0] - 0.5)))
         xj = np.sin(self.time * x[:, 0])
 
@@ -519,6 +757,7 @@ class GTS9(GTS):
         out["F"] = np.column_stack([f1, f2, f3])
 
     def _calc_pareto_front(self, *args, n_pareto_points=100, **kwargs):
+        """Pareto front."""
         H = 20
         x1, x2 = np.meshgrid(np.linspace(0, 1, H), np.linspace(0, 1, H), indexing='xy')
 
@@ -532,6 +771,7 @@ class GTS9(GTS):
         return get_PF(np.array([f1, f2, f3]), True)
 
     def _calc_pareto_set(self, *args, n_pareto_points=100, **kwargs):
+        """Pareto set."""
         x_vec1 = np.linspace(0, 1, n_pareto_points)
         x_vec2 = 1 / (1 + np.exp(alpha_t(self.time) * (x_vec1 - 0.5)))
         x_vec3 = np.sin(self.time * x_vec1)
@@ -541,11 +781,39 @@ class GTS9(GTS):
 
 # modified DF13
 class GTS10(GTS):
+    r"""GTS10 test problem.
+
+    - Inherits all parameters from parent class GTS.
+
+    Attributes
+    ----------
+    name : str
+        Problem name, default is 'GTS1'
+    n_var : int
+        Number of decision variables
+    n_obj : int
+        Number of objective functions
+    time_linkage : bool
+        Whether the problem has time linkage
+
+    Notes
+    -----
+    - Mathematical Formulation:
+
+    - Pareto set (PS)
+
+    ![GTS10 PS](../../figs/PS/GTS10.png){: width="400px" height="300px"}
+
+    - Pareto front (PF)
+
+    ![GTS10 PF](../../figs/PF/GTS10.png){: width="400px" height="300px"}
+    """
     def __init__(self, **kwargs):
         super().__init__(part_idx=2, bounds=((0, 1), (0, 1), (-1, 1)), **kwargs)
         self.n_obj = 3
 
     def _evaluate(self, x, out, *args, **kwargs):
+        """Evaluate."""
         xi = np.abs(G_t(self.time))
         xj = -0.5 + np.abs(G_t(self.time) * np.sin(4 * np.pi * x[:, 1])) / (0.5 * (1 + np.abs(G_t(self.time))))
 
@@ -568,6 +836,7 @@ class GTS10(GTS):
         out["F"] = np.column_stack([f1, f2, f3])
 
     def _calc_pareto_front(self, *args, n_pareto_points=100, **kwargs):
+        """Pareto front."""
         H = 20
         x1, x2 = np.meshgrid(np.linspace(0, 1, H), np.linspace(0, 1, H), indexing='xy')
         G = np.sin(0.5 * np.pi * self.time)
@@ -581,6 +850,7 @@ class GTS10(GTS):
         return get_PF(np.array([f1, f2, f3]), True)
 
     def _calc_pareto_set(self, *args, n_pareto_points=100, **kwargs):
+        """Pareto set."""
         x_vec1 = np.linspace(0, 1, n_pareto_points)
         x_vec2 = np.full(len(x_vec1), np.abs(G_t(self.time)))
         x_vec3 = -0.5 + np.abs(G_t(self.time) * np.sin(4 * np.pi * x_vec1)) / (0.5 * (1 + np.abs(G_t(self.time))))
@@ -590,11 +860,39 @@ class GTS10(GTS):
 
 # modified DF14
 class GTS11(GTS):
+    r"""GTS11 test problem.
+
+    - Inherits all parameters from parent class GTS.
+
+    Attributes
+    ----------
+    name : str
+        Problem name, default is 'GTS1'
+    n_var : int
+        Number of decision variables
+    n_obj : int
+        Number of objective functions
+    time_linkage : bool
+        Whether the problem has time linkage
+
+    Notes
+    -----
+    - Mathematical Formulation:
+
+    - Pareto set (PS)
+
+    ![GTS11 PS](../../figs/PS/GTS11.png){: width="400px" height="300px"}
+
+    - Pareto front (PF)
+
+    ![GTS11 PF](../../figs/PF/GTS11.png){: width="400px" height="300px"}
+    """
     def __init__(self, **kwargs):
         super().__init__(part_idx=2, bounds=((0, 1), (0, 1), (-1, 2)), **kwargs)
         self.n_obj = 3
 
     def _evaluate(self, x, out, *args, **kwargs):
+        """Evaluate."""
         xi = np.abs(G_t(self.time))
         xj = G_t(self.time) + np.power(x[:, 0], H_t(self.time))
 
@@ -613,6 +911,7 @@ class GTS11(GTS):
         out["F"] = np.column_stack([f1, f2, f3])
 
     def _calc_pareto_front(self, *args, n_pareto_points=100, **kwargs):
+        """Pareto front."""
         H = 20
         x1, x2 = np.meshgrid(np.linspace(0, 1, H), np.linspace(0, 1, H), indexing='xy')
 
@@ -624,6 +923,7 @@ class GTS11(GTS):
         return get_PF(np.array([f1, f2, f3]), False)
 
     def _calc_pareto_set(self, *args, n_pareto_points=100, **kwargs):
+        """Pareto set."""
         x_vec1 = np.linspace(0, 1, n_pareto_points)
         x_vec2 = np.full(len(x_vec1), np.abs(G_t(self.time)))
         x_vec3 = G_t(self.time) + np.power(x_vec1, H_t(self.time))
