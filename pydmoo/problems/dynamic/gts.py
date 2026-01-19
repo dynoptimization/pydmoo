@@ -264,7 +264,7 @@ class GTS2(GTS):
     \end{equation*}
 
     where $p \geq 1$, $\mathbf{x}_I = (x_1, x_2)$, $\mathbf{x}_{II,1} = (x_3, \cdots, x_{\lfloor\frac{D}{2}\rfloor + 1})$ and $\mathbf{x}_{II,2} = (x_{\lfloor\frac{D}{2}\rfloor + 2}, \cdots, x_D)$, $c = \cot(3\pi t^2), \text{when~} t^2 \neq \frac{n}{3}, n \in \mathbb{Z}, c = 1e-32, \text{otherwise}$,
-    $h_1(\mathbf{x}_I, t) = \frac{1}{\pi}\abs{\arctan(c)}$ and $h_2(\mathbf{x}_I, t) = G(t) + x_1^{H(t)}$,
+    $h_1(\mathbf{x}_I, t) = \frac{1}{\pi}\left\vert{\arctan(c)}\right\vert$ and $h_2(\mathbf{x}_I, t) = G(t) + x_1^{H(t)}$,
     $\mathbf{R}_{II,1}(t)$ and $\mathbf{R}_{II,2}(t)$ are symmetric positive semidefinite matrices in the $t$-th environment,
     the search space is $[0,1]^2 \times [0,1]^{\lfloor\frac{D}{2}\rfloor -1} \times  [-1, 2]^{\lceil\frac{D}{2}\rceil-1}$.
 
@@ -359,7 +359,7 @@ class GTS3(GTS):
     \end{equation*}
 
     where $p \geq 1$, $\mathbf{x}_I = (x_1)$, $\mathbf{x}_{II,1} = (x_2, \cdots, x_{\lfloor\frac{D}{2}\rfloor})$ and $\mathbf{x}_{II,2} = (x_{\lfloor\frac{D}{2}\rfloor + 1}, \cdots, x_D)$,
-    $h_1(\mathbf{x}_I, t) = \frac{G(t)\sin(4\pi x_1)}{1 + \abs{G(t)}}$ and $h_2(\mathbf{x}_I, t) = G(t) + x_1^{H(t)}$,
+    $h_1(\mathbf{x}_I, t) = \frac{G(t)\sin(4\pi x_1)}{1 + \left\vert{G(t)}\right\vert}$ and $h_2(\mathbf{x}_I, t) = G(t) + x_1^{H(t)}$,
     $\mathbf{R}_{II,1}(t)$ and $\mathbf{R}_{II,2}(t)$ are symmetric positive semidefinite matrices in the $t$-th environment,
     the search space is $[0,1] \times [-1,1]^{\lfloor\frac{D}{2}\rfloor - 1} \times  [-1, 2]^{\lceil\frac{D}{2}\rceil}$.
 
@@ -448,7 +448,7 @@ class GTS4(GTS):
     \end{equation*}
 
     where $p \geq 1$, $\mathbf{x}_I = (x_1)$, $\mathbf{x}_{II,1} = (x_2, \cdots, x_{\lfloor\frac{D}{2}\rfloor})$ and $\mathbf{x}_{II,2} = (x_{\lfloor\frac{D}{2}\rfloor + 1}, \cdots, x_D)$,
-    $h_1(\mathbf{x}_I, t) = \abs{G(t)}$ and $h_2(\mathbf{x}_I, t) = \frac{G(t)\sin(4\pi x_1)}{1 + \abs{G(t)}}$,
+    $h_1(\mathbf{x}_I, t) = \left\vert{G(t)}\right\vert$ and $h_2(\mathbf{x}_I, t) = \frac{G(t)\sin(4\pi x_1)}{1 + \left\vert{G(t)}\right\vert}$,
     $\mathbf{R}_{II,1}(t)$ and $\mathbf{R}_{II,2}(t)$ are symmetric positive semidefinite matrices in the $t$-th environment,
     the search space is $[0,1] \times [0,1]^{\lfloor\frac{D}{2}\rfloor -1} \times  [-1, 1]^{\lceil\frac{D}{2}\rceil}$.
 
@@ -708,8 +708,8 @@ class GTS7(GTS):
     \begin{equation}
         \text{min}
         \begin{cases}
-            f_1(\mathbf{x},t) =  g(\mathbf{x},t)\abs{x_1-a_t}^{H(t)} \\
-            f_2(\mathbf{x},t) = g(\mathbf{x},t)\abs{x_1-a_t-b_t}^{H(t)}
+            f_1(\mathbf{x},t) =  g(\mathbf{x},t)\left\vert{x_1-a_t}\right\vert^{H(t)} \\
+            f_2(\mathbf{x},t) = g(\mathbf{x},t)\left\vert{x_1-a_t-b_t}\right\vert^{H(t)}
         \end{cases}
     \end{equation}
 
@@ -809,7 +809,7 @@ class GTS8(GTS):
             g(\mathbf{x},t) = 1
              & + \Bigl(\bigl(\mathbf{x}_{II,1} - h_1(\mathbf{x}_I)\bigr)^T \mathbf{R}_{II,1}(t) \bigl(\mathbf{x}_{II,1} - h_1(\mathbf{x}_I)\bigr)\Bigr)^{\frac{1}{p}} \\
              & + \Bigl(\bigl(\mathbf{x}_{II,2} - h_2(\mathbf{x}_I)\bigr)^T \mathbf{R}_{II,2}(t) \bigl(\mathbf{x}_{II,2} - h_2(\mathbf{x}_I)\bigr)\Bigr)^{\frac{1}{p}} \\
-             & + 0.25\abs{\cos(0.3 \pi t)}
+             & + 0.25\left\vert{\cos(0.3 \pi t)}\right\vert
         \end{split}
     \end{equation*}
 
@@ -904,7 +904,7 @@ class GTS9(GTS):
             g(\mathbf{x},t) = 1
              & + \Bigl(\bigl(\mathbf{x}_{II,1} - h_1(\mathbf{x}_I)\bigr)^T \mathbf{R}_{II,1}(t) \bigl(\mathbf{x}_{II,1} - h_1(\mathbf{x}_I)\bigr)\Bigr)^{\frac{1}{p}} \\
              & + \Bigl(\bigl(\mathbf{x}_{II,2} - h_2(\mathbf{x}_I)\bigr)^T \mathbf{R}_{II,2}(t) \bigl(\mathbf{x}_{II,2} - h_2(\mathbf{x}_I)\bigr)\Bigr)^{\frac{1}{p}} \\
-             & + \abs{\cos(0.27\pi t)}
+             & + \left\vert{\cos(0.27\pi t)}\right\vert
         \end{split}
     \end{equation*}
 
@@ -1009,7 +1009,7 @@ class GTS10(GTS):
     \end{equation*}
 
     where $p \geq 1$, $\mathbf{x}_I = (x_1, x_2)$, $\mathbf{x}_{II,1} = (x_3, \cdots, x_{\lfloor\frac{D}{2}\rfloor + 1})$ and $\mathbf{x}_{II,2} = (x_{\lfloor\frac{D}{2}\rfloor + 2}, \cdots, x_D)$,
-    $h_1(\mathbf{x}_I, t) = \abs{G(t)}$ and $h_2(\mathbf{x}_I, t) = -0.5 + \frac{\abs{G(t)\sin(4\pi x_1)}}{0.5(1+\abs{G(t)})}$,
+    $h_1(\mathbf{x}_I, t) = \left\vert{G(t)}\right\vert$ and $h_2(\mathbf{x}_I, t) = -0.5 + \frac{\left\vert{G(t)\sin(4\pi x_1)}\right\vert}{0.5(1+\left\vert{G(t)}\right\vert)}$,
     $\mathbf{R}_{II,1}(t)$ and $\mathbf{R}_{II,2}(t)$ are symmetric positive semidefinite matrices in the $t$-th environment,%
     the search space is $[0,1]^2 \times [0,1]^{\lfloor\frac{D}{2}\rfloor - 1} \times  [-1, 1]^{\lceil\frac{D}{2}\rceil - 1}$.
 
@@ -1112,7 +1112,7 @@ class GTS11(GTS):
     \end{equation*}
 
     where $p \geq 1$, $\mathbf{x}_I = (x_1, x_2)$, $\mathbf{x}_{II,1} = (x_3, \cdots, x_{\lfloor\frac{D}{2}\rfloor + 1})$ and $\mathbf{x}_{II,2} = (x_{\lfloor\frac{D}{2}\rfloor + 2}, \cdots, x_D)$,
-    $h_1(\mathbf{x}_I, t) = \abs{G(t)}$ and $h_2(\mathbf{x}_I, t) = G(t) + x_1^{H(t)}$,
+    $h_1(\mathbf{x}_I, t) = \left\vert{G(t)}\right\vert$ and $h_2(\mathbf{x}_I, t) = G(t) + x_1^{H(t)}$,
     $\mathbf{R}_{II,1}(t)$ and $\mathbf{R}_{II,2}(t)$ are symmetric positive semidefinite matrices in the $t$-th environment,
     the search space is $[0,1]^2 \times [0,1]^{\lfloor\frac{D}{2}\rfloor - 1} \times  [-1, 2]^{\lceil\frac{D}{2}\rceil - 1}$.
 
