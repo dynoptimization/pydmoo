@@ -1169,110 +1169,132 @@ class GTS11(GTS):
 
 
 class GTS1_2(GTS1):
+    """GTS1_2 test problem."""
     def __init__(self, matrix_case="two", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS2_2(GTS1):
+    """GTS2_2 test problem."""
     def __init__(self, matrix_case="two", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS3_2(GTS1):
+    """GTS3_2 test problem."""
     def __init__(self, matrix_case="two", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS4_2(GTS1):
+    """GTS4_2 test problem."""
     def __init__(self, matrix_case="two", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS5_2(GTS1):
+    """GTS5_2 test problem."""
     def __init__(self, matrix_case="two", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS6_2(GTS1):
+    """GTS6_2 test problem."""
     def __init__(self, matrix_case="two", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS7_2(GTS1):
+    """GTS7_2 test problem."""
     def __init__(self, matrix_case="two", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS8_2(GTS1):
+    """GTS8_2 test problem."""
     def __init__(self, matrix_case="two", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS9_2(GTS1):
+    """GTS9_2 test problem."""
     def __init__(self, matix_case="two", **kwargs):
         super().__init__(matrix_case=matix_case, **kwargs)
 
 
 class GTS10_2(GTS1):
+    """GTS10_2 test problem."""
     def __init__(self, matrix_case="two", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS11_2(GTS1):
+    """GTS11_2 test problem."""
     def __init__(self, matrix_case="two", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS1_3(GTS1):
+    """GTS1_3 test problem."""
     def __init__(self, matrix_case="three", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS2_3(GTS1):
+    """GTS2_3 test problem."""
     def __init__(self, matrix_case="three", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS3_3(GTS1):
+    """GTS3_3 test problem."""
     def __init__(self, matrix_case="three", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS4_3(GTS1):
+    """GTS4_3 test problem."""
     def __init__(self, matrix_case="three", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS5_3(GTS1):
+    """GTS5_3 test problem."""
     def __init__(self, matrix_case="three", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS6_3(GTS1):
+    """GTS6_3 test problem."""
     def __init__(self, matrix_case="three", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS7_3(GTS1):
+    """GTS7_3 test problem."""
     def __init__(self, matrix_case="three", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS8_3(GTS1):
+    """GTS8_3 test problem."""
     def __init__(self, matrix_case="three", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS9_3(GTS1):
+    """GTS9_3 test problem."""
     def __init__(self, matrix_case="three", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS10_3(GTS1):
+    """GTS10_3 test problem."""
     def __init__(self, matrix_case="three", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
 class GTS11_3(GTS1):
+    """GTS11_3 test problem."""
     def __init__(self, matrix_case="three", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
