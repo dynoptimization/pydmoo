@@ -428,6 +428,30 @@ class GTS4(GTS):
     -----
     - Mathematical Formulation:
 
+    \begin{equation}
+        \text{min}
+        \begin{cases}
+            f_1(\mathbf{x},t) = g(\mathbf{x},t)\frac{1 +  t}{x_1 + 3} \\
+            f_2(\mathbf{x},t) = g(\mathbf{x},t)\frac{x_1 + 3}{1 + t}
+        \end{cases}
+    \end{equation}
+
+    with
+
+    \begin{equation*}
+        \begin{split}
+            g(\mathbf{x},t) = 1
+             & + \Bigl(\bigl(\mathbf{x}_{II,1} - h_1(\mathbf{x}_I)\bigr)^T \mathbf{R}_{II,1}(t) \bigl(\mathbf{x}_{II,1} - h_1(\mathbf{x}_I)\bigr)\Bigr)^{\frac{1}{p}} \\
+             & + \Bigl(\bigl(\mathbf{x}_{II,2} - h_2(\mathbf{x}_I)\bigr)^T \mathbf{R}_{II,2}(t) \bigl(\mathbf{x}_{II,2} - h_2(\mathbf{x}_I)\bigr)\Bigr)^{\frac{1}{p}} \\
+             & - 0.5 + 0.25\sin(0.3\pi t)
+        \end{split}
+    \end{equation*}
+
+    where $p \geq 1$, $\mathbf{x}_I = (x_1)$, $\mathbf{x}_{II,1} = (x_2, \cdots, x_{\lfloor\frac{D}{2}\rfloor})$ and $\mathbf{x}_{II,2} = (x_{\lfloor\frac{D}{2}\rfloor + 1}, \cdots, x_D)$,
+    $h_1(\mathbf{x}_I, t) = \abs{G(t)}$ and $h_2(\mathbf{x}_I, t) = \frac{G(t)\sin(4\pi x_1)}{1 + \abs{G(t)}}$,
+    $\mathbf{R}_{II,1}(t)$ and $\mathbf{R}_{II,2}(t)$ are symmetric positive semidefinite matrices in the $t$-th environment,
+    the search space is $[0,1] \times [0,1]^{\lfloor\frac{D}{2}\rfloor -1} \times  [-1, 1]^{\lceil\frac{D}{2}\rceil}$.
+
     - Pareto set (PS)
 
     ![GTS4 PS](../../figs/PS/GTS4.png){: width="400px" height="300px"}
@@ -496,6 +520,30 @@ class GTS5(GTS):
     Notes
     -----
     - Mathematical Formulation:
+
+    \begin{equation}
+        \text{min}
+        \begin{cases}
+            f_1(\mathbf{x},t) =  g(\mathbf{x},t)((0.5x_1+x_2)) + 0.02\sin(\omega_t\pi (0.5x_1+x_2))) \\
+            f_2(\mathbf{x},t) = g(\mathbf{x},t)(1.6 - (0.5x_1+x_2) + 0.02\sin(\omega_t\pi  (0.5x_1+x_2)))
+        \end{cases}
+    \end{equation}
+
+    with
+
+    \begin{equation*}
+        \begin{split}
+            g(\mathbf{x},t) = 1
+             & + \Bigl(\bigl(\mathbf{x}_{II,1} - h_1(\mathbf{x}_I)\bigr)^T \mathbf{R}_{II,1}(t) \bigl(\mathbf{x}_{II,1} - h_1(\mathbf{x}_I)\bigr)\Bigr)^{\frac{1}{p}} \\
+             & + \Bigl(\bigl(\mathbf{x}_{II,2} - h_2(\mathbf{x}_I)\bigr)^T \mathbf{R}_{II,2}(t) \bigl(\mathbf{x}_{II,2} - h_2(\mathbf{x}_I)\bigr)\Bigr)^{\frac{1}{p}} \\
+             & + 0.5 + 0.5G(t)
+        \end{split}
+    \end{equation*}
+
+    where $p \geq 1$, $\mathbf{x}_I = (x_1, x_2)$, $\mathbf{x}_{II,1} = (x_3, \cdots, x_{\lfloor\frac{D}{2}\rfloor + 1})$ and $\mathbf{x}_{II,2} = (x_{\lfloor\frac{D}{2}\rfloor + 2}, \cdots, x_D)$,
+    $h_1(\mathbf{x}_I, t) = \cos(0.5\pi t)$ and $h_2(\mathbf{x}_I, t) = G(t) + x_1^{H(t)}$,
+    $\mathbf{R}_{II,1}(t)$ and $\mathbf{R}_{II,2}(t)$ are symmetric positive semidefinite matrices in the $t$-th environment,
+    the search space is $[0,1]^2 \times [-1,1]^{\lfloor\frac{D}{2}\rfloor - 1} \times  [-1, 2]^{\lceil\frac{D}{2}\rceil-1}$.
 
     - Pareto set (PS)
 
@@ -571,6 +619,29 @@ class GTS6(GTS):
     -----
     - Mathematical Formulation:
 
+    \begin{equation}
+        \text{min}
+        \begin{cases}
+            f_1(\mathbf{x},t) = x_1 \\
+            f_2(\mathbf{x},t) =  g(\mathbf{x},t)(1 - (\frac{x_1}{g(\mathbf{x},t)})^{H(t)})
+        \end{cases}
+    \end{equation}
+
+    with
+
+    \begin{equation*}
+        \begin{split}
+            g(\mathbf{x},t) = 1
+             & + \Bigl(\bigl(\mathbf{x}_{II,1} - h_1(\mathbf{x}_I)\bigr)^T \mathbf{R}_{II,1}(t) \bigl(\mathbf{x}_{II,1} - h_1(\mathbf{x}_I)\bigr)\Bigr)^{\frac{1}{p}} \\
+             & + \Bigl(\bigl(\mathbf{x}_{II,2} - h_2(\mathbf{x}_I)\bigr)^T \mathbf{R}_{II,2}(t) \bigl(\mathbf{x}_{II,2} - h_2(\mathbf{x}_I)\bigr)\Bigr)^{\frac{1}{p}}
+        \end{split}
+    \end{equation*}
+
+    where $p \geq 1$, $\mathbf{x}_I = (x_1)$, $\mathbf{x}_{II,1} = (x_2, \cdots, x_{\lfloor\frac{D}{2}\rfloor})$ and $\mathbf{x}_{II,2} = (x_{\lfloor\frac{D}{2}\rfloor + 1}, \cdots, x_D)$,
+    $h_1(\mathbf{x}_I, t) = \cos(0.5\pi t)$ and $h_2(\mathbf{x}_I, t) = G(t) + x_1^{H(t)}$,
+    $\mathbf{R}_{II,1}(t)$ and $\mathbf{R}_{II,2}(t)$ are symmetric positive semidefinite matrices in the $t$-th environment,
+    the search space is $[0,1] \times [-1,1]^{\lfloor\frac{D}{2}\rfloor -1} \times  [-1, 2]^{\lceil\frac{D}{2}\rceil}$.
+
     - Pareto set (PS)
 
     ![GTS6 PS](../../figs/PS/GTS6.png){: width="400px" height="300px"}
@@ -633,6 +704,29 @@ class GTS7(GTS):
     Notes
     -----
     - Mathematical Formulation:
+
+    \begin{equation}
+        \text{min}
+        \begin{cases}
+            f_1(\mathbf{x},t) =  g(\mathbf{x},t)\abs{x_1-a_t}^{H(t)} \\
+            f_2(\mathbf{x},t) = g(\mathbf{x},t)\abs{x_1-a_t-b_t}^{H(t)}
+        \end{cases}
+    \end{equation}
+
+    with
+
+    \begin{equation*}
+        \begin{split}
+            g(\mathbf{x},t) = 1
+             & + \Bigl(\bigl(\mathbf{x}_{II,1} - h_1(\mathbf{x}_I)\bigr)^T \mathbf{R}_{II,1}(t) \bigl(\mathbf{x}_{II,1} - h_1(\mathbf{x}_I)\bigr)\Bigr)^{\frac{1}{p}} \\
+             & + \Bigl(\bigl(\mathbf{x}_{II,2} - h_2(\mathbf{x}_I)\bigr)^T \mathbf{R}_{II,2}(t) \bigl(\mathbf{x}_{II,2} - h_2(\mathbf{x}_I)\bigr)\Bigr)^{\frac{1}{p}}
+        \end{split}
+    \end{equation*}
+
+    where $p \geq 1$, $\mathbf{x}_I = (x_1)$, $\mathbf{x}_{II,1} = (x_2, \cdots, x_{\lfloor\frac{D}{2}\rfloor})$ and $\mathbf{x}_{II,2} = (x_{\lfloor\frac{D}{2}\rfloor + 1}, \cdots, x_D)$,
+    $h_1(\mathbf{x}_I, t) = \cos(0.5\pi t)$ and $h_2(\mathbf{x}_I, t) = \frac{1}{1 + e^{\alpha_t(x_1 - 0.5)}}$,
+    $\mathbf{R}_{II,1}(t)$ and $\mathbf{R}_{II,2}(t)$ are symmetric positive semidefinite matrices in the $t$-th environment,
+    the search space is $[-1,2.5] \times [-1,1]^{\lfloor\frac{D}{2}\rfloor - 1} \times  [0, 1]^{\lceil\frac{D}{2}\rceil}$.
 
     - Pareto set (PS)
 
@@ -699,6 +793,30 @@ class GTS8(GTS):
     Notes
     -----
     - Mathematical Formulation:
+
+    \begin{equation}
+        \text{min}
+        \begin{cases}
+            f_1(\mathbf{x},t) = (0.5x_1+x_2)                                                         \\
+            f_2(\mathbf{x},t) = g(\mathbf{x},t)(2.8 - (\frac{(0.5x_1+x_2)}{g(\mathbf{x},t)})^{H(t)}) \\
+        \end{cases}
+    \end{equation}
+
+    with
+
+    \begin{equation*}
+        \begin{split}
+            g(\mathbf{x},t) = 1
+             & + \Bigl(\bigl(\mathbf{x}_{II,1} - h_1(\mathbf{x}_I)\bigr)^T \mathbf{R}_{II,1}(t) \bigl(\mathbf{x}_{II,1} - h_1(\mathbf{x}_I)\bigr)\Bigr)^{\frac{1}{p}} \\
+             & + \Bigl(\bigl(\mathbf{x}_{II,2} - h_2(\mathbf{x}_I)\bigr)^T \mathbf{R}_{II,2}(t) \bigl(\mathbf{x}_{II,2} - h_2(\mathbf{x}_I)\bigr)\Bigr)^{\frac{1}{p}} \\
+             & + 0.25\abs{\cos(0.3 \pi t)}
+        \end{split}
+    \end{equation*}
+
+    where $p \geq 1$, $\mathbf{x}_I = (x_1, x_2)$, $\mathbf{x}_{II,1} = (x_3, \cdots, x_{\lfloor\frac{D}{2}\rfloor + 1})$ and $\mathbf{x}_{II,2} = (x_{\lfloor\frac{D}{2}\rfloor + 2}, \cdots, x_D)$,
+    $h_1(\mathbf{x}_I, t) = \frac{1}{1 + e^{\alpha _t(x_1 - 0.5)}}$ and $h_2(\mathbf{x}_I, t) = G(t) + x_1^{H(t)}$,
+    $\mathbf{R}_{II,1}(t)$ and $\mathbf{R}_{II,2}(t)$ are symmetric positive semidefinite matrices in the $t$-th environment,
+    the search space is $[0,1]^2 \times [0,1]^{\lfloor\frac{D}{2}\rfloor -1} \times  [-1, 2]^{\lceil\frac{D}{2}\rceil-1}$.
 
     - Pareto set (PS)
 
@@ -769,6 +887,31 @@ class GTS9(GTS):
     Notes
     -----
     - Mathematical Formulation:
+
+    \begin{equation}
+        \text{min}
+        \begin{cases}
+            f_1(\mathbf{x},t) = g(\mathbf{x},t)\cos(0.5\pi  x_1)\cos(0.5\pi x_2) \\
+            f_2(\mathbf{x},t) = g(\mathbf{x},t)\cos(0.5\pi x_1)\sin(0.5\pi x_2)  \\
+            f_3(\mathbf{x},t) = g(\mathbf{x},t)\sin(0.5\pi x_1)
+        \end{cases}
+    \end{equation}
+
+    with
+
+    \begin{equation*}
+        \begin{split}
+            g(\mathbf{x},t) = 1
+             & + \Bigl(\bigl(\mathbf{x}_{II,1} - h_1(\mathbf{x}_I)\bigr)^T \mathbf{R}_{II,1}(t) \bigl(\mathbf{x}_{II,1} - h_1(\mathbf{x}_I)\bigr)\Bigr)^{\frac{1}{p}} \\
+             & + \Bigl(\bigl(\mathbf{x}_{II,2} - h_2(\mathbf{x}_I)\bigr)^T \mathbf{R}_{II,2}(t) \bigl(\mathbf{x}_{II,2} - h_2(\mathbf{x}_I)\bigr)\Bigr)^{\frac{1}{p}} \\
+             & + \abs{\cos(0.27\pi t)}
+        \end{split}
+    \end{equation*}
+
+    where $p \geq 1$, $\mathbf{x}_I = (x_1, x_2)$, $\mathbf{x}_{II,1} = (x_3, \cdots, x_{\lfloor\frac{D}{2}\rfloor + 1})$ and $\mathbf{x}_{II,2} = (x_{\lfloor\frac{D}{2}\rfloor + 2}, \cdots, x_D)$,
+    $h_1(\mathbf{x}_I, t) = \frac{1}{1+e^{\alpha_t(x_1 - 0.5)}}$ and $h_2(\mathbf{x}_I, t) = \sin(tx_1)$,
+    $\mathbf{R}_{II,1}(t)$ and $\mathbf{R}_{II,2}(t)$ are symmetric positive semidefinite matrices in the $t$-th environment,
+    the search space is $[0,1]^2 \times [0,1]^{\lfloor\frac{D}{2}\rfloor - 1} \times  [-1, 1]^{\lceil\frac{D}{2}\rceil - 1}$.
 
     - Pareto set (PS)
 
@@ -845,6 +988,30 @@ class GTS10(GTS):
     Notes
     -----
     - Mathematical Formulation:
+
+    \begin{equation}
+        \text{min}
+        \begin{cases}
+            f_1(\mathbf{x},t) =  g(\mathbf{x},t)\cos^2(0.5\pi x_1) \\
+            f_2(\mathbf{x},t) = g(\mathbf{x},t)\cos^2(0.5\pi x_2)  \\
+            f_3(\mathbf{x},t) = g(\mathbf{x},t)\sum_{j = 1}^{2}(\sin^2(0.5\pi x_j) + \sin(0.5\pi  x_j)\cos^2(\lfloor6G(t)\rfloor \pi x_j))
+        \end{cases}
+    \end{equation}
+
+    with
+
+    \begin{equation*}
+        \begin{split}
+            g(\mathbf{x},t) = 1
+             & + \Bigl(\bigl(\mathbf{x}_{II,1} - h_1(\mathbf{x}_I)\bigr)^T \mathbf{R}_{II,1}(t) \bigl(\mathbf{x}_{II,1} - h_1(\mathbf{x}_I)\bigr)\Bigr)^{\frac{1}{p}} \\
+             & + \Bigl(\bigl(\mathbf{x}_{II,2} - h_2(\mathbf{x}_I)\bigr)^T \mathbf{R}_{II,2}(t) \bigl(\mathbf{x}_{II,2} - h_2(\mathbf{x}_I)\bigr)\Bigr)^{\frac{1}{p}}
+        \end{split}
+    \end{equation*}
+
+    where $p \geq 1$, $\mathbf{x}_I = (x_1, x_2)$, $\mathbf{x}_{II,1} = (x_3, \cdots, x_{\lfloor\frac{D}{2}\rfloor + 1})$ and $\mathbf{x}_{II,2} = (x_{\lfloor\frac{D}{2}\rfloor + 2}, \cdots, x_D)$,
+    $h_1(\mathbf{x}_I, t) = \abs{G(t)}$ and $h_2(\mathbf{x}_I, t) = -0.5 + \frac{\abs{G(t)\sin(4\pi x_1)}}{0.5(1+\abs{G(t)})}$,
+    $\mathbf{R}_{II,1}(t)$ and $\mathbf{R}_{II,2}(t)$ are symmetric positive semidefinite matrices in the $t$-th environment,%
+    the search space is $[0,1]^2 \times [0,1]^{\lfloor\frac{D}{2}\rfloor - 1} \times  [-1, 1]^{\lceil\frac{D}{2}\rceil - 1}$.
 
     - Pareto set (PS)
 
@@ -924,6 +1091,30 @@ class GTS11(GTS):
     Notes
     -----
     - Mathematical Formulation:
+
+    \begin{equation}
+        \text{min}
+        \begin{cases}
+            f_1(\mathbf{x},t) = g(\mathbf{x},t)(1.05 - y +  0.05\sin(6\pi y))                           \\
+            f_2(\mathbf{x},t) = g(\mathbf{x},t)(1.05 - x_2 + 0.05\sin(6\pi x_2))(y +  0.05\sin(6\pi y)) \\
+            f_3(\mathbf{x},t) = g(\mathbf{x},t)(x_2 + 0.05\sin(6\pi x_2))(y + 0.05\sin(6\pi y))
+        \end{cases}
+    \end{equation}
+
+    with
+
+    \begin{equation*}
+        \begin{split}
+            g(\mathbf{x},t) = 1
+             & + \Bigl(\bigl(\mathbf{x}_{II,1} - h_1(\mathbf{x}_I)\bigr)^T \mathbf{R}_{II,1}(t) \bigl(\mathbf{x}_{II,1} - h_1(\mathbf{x}_I)\bigr)\Bigr)^{\frac{1}{p}} \\
+             & + \Bigl(\bigl(\mathbf{x}_{II,2} - h_2(\mathbf{x}_I)\bigr)^T \mathbf{R}_{II,2}(t) \bigl(\mathbf{x}_{II,2} - h_2(\mathbf{x}_I)\bigr)\Bigr)^{\frac{1}{p}}
+        \end{split}
+    \end{equation*}
+
+    where $p \geq 1$, $\mathbf{x}_I = (x_1, x_2)$, $\mathbf{x}_{II,1} = (x_3, \cdots, x_{\lfloor\frac{D}{2}\rfloor + 1})$ and $\mathbf{x}_{II,2} = (x_{\lfloor\frac{D}{2}\rfloor + 2}, \cdots, x_D)$,
+    $h_1(\mathbf{x}_I, t) = \abs{G(t)}$ and $h_2(\mathbf{x}_I, t) = G(t) + x_1^{H(t)}$,
+    $\mathbf{R}_{II,1}(t)$ and $\mathbf{R}_{II,2}(t)$ are symmetric positive semidefinite matrices in the $t$-th environment,
+    the search space is $[0,1]^2 \times [0,1]^{\lfloor\frac{D}{2}\rfloor - 1} \times  [-1, 2]^{\lceil\frac{D}{2}\rceil - 1}$.
 
     - Pareto set (PS)
 
