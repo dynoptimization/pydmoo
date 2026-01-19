@@ -245,6 +245,29 @@ class GTS2(GTS):
     -----
     - Mathematical Formulation:
 
+    \begin{equation}
+        \text{min}
+        \begin{cases}
+            f_1(\mathbf{x},t) = 0.5x_1+x_2 \\
+            f_2(\mathbf{x},t) = g(\mathbf{x},t)(2.8 - (\frac{0.5x_1+x_2}{g(\mathbf{x},t)})^{H(t)})
+        \end{cases}
+    \end{equation}
+
+    with
+
+    \begin{equation*}
+        \begin{split}
+            g(\mathbf{x},t) = 1
+             & + \Bigl(\bigl(\mathbf{x}_{II,1} - h_1(\mathbf{x}_I)\bigr)^T \mathbf{R}_{II,1}(t) \bigl(\mathbf{x}_{II,1} - h_1(\mathbf{x}_I)\bigr)\Bigr)^{\frac{1}{p}} \\
+             & + \Bigl(\bigl(\mathbf{x}_{II,2} - h_2(\mathbf{x}_I)\bigr)^T \mathbf{R}_{II,2}(t) \bigl(\mathbf{x}_{II,2} - h_2(\mathbf{x}_I)\bigr)\Bigr)^{\frac{1}{p}}
+        \end{split}
+    \end{equation*}
+
+    where $p \geq 1$, $\mathbf{x}_I = (x_1, x_2)$, $\mathbf{x}_{II,1} = (x_3, \cdots, x_{\lfloor\frac{D}{2}\rfloor + 1})$ and $\mathbf{x}_{II,2} = (x_{\lfloor\frac{D}{2}\rfloor + 2}, \cdots, x_D)$, $c = \cot(3\pi t^2), \text{when~} t^2 \neq \frac{n}{3}, n \in \mathbb{Z}, c = 1e-32, \text{otherwise}$,
+    $h_1(\mathbf{x}_I, t) = \frac{1}{\pi}\abs{\arctan(c)}$ and $h_2(\mathbf{x}_I, t) = G(t) + x_1^{H(t)}$,
+    $\mathbf{R}_{II,1}(t)$ and $\mathbf{R}_{II,2}(t)$ are symmetric positive semidefinite matrices in the $t$-th environment,
+    the search space is $[0,1]^2 \times [0,1]^{\lfloor\frac{D}{2}\rfloor -1} \times  [-1, 2]^{\lceil\frac{D}{2}\rceil-1}$.
+
     - Pareto set (PS)
 
     ![GTS2 PS](../../figs/PS/GTS2.png){: width="400px" height="300px"}
@@ -316,6 +339,29 @@ class GTS3(GTS):
     Notes
     -----
     - Mathematical Formulation:
+
+    \begin{equation}
+        \text{min}
+        \begin{cases}
+            f_1(\mathbf{x},t) = g(x)(x_1 +  0.1\sin(3\pi x_1))^{\beta_t} \\
+            f_2(\mathbf{x},t) = g(\mathbf{x},t)(1 - x_1 + 0.1\sin(3\pi  x_1))^{\beta_t}
+        \end{cases}
+    \end{equation}
+
+    with
+
+    \begin{equation*}
+        \begin{split}
+            g(\mathbf{x},t) = 1
+             & + \Bigl(\bigl(\mathbf{x}_{II,1} - h_1(\mathbf{x}_I)\bigr)^T \mathbf{R}_{II,1}(t) \bigl(\mathbf{x}_{II,1} - h_1(\mathbf{x}_I)\bigr)\Bigr)^{\frac{1}{p}} \\
+             & + \Bigl(\bigl(\mathbf{x}_{II,2} - h_2(\mathbf{x}_I)\bigr)^T \mathbf{R}_{II,2}(t) \bigl(\mathbf{x}_{II,2} - h_2(\mathbf{x}_I)\bigr)\Bigr)^{\frac{1}{p}}
+        \end{split}
+    \end{equation*}
+
+    where $p \geq 1$, $\mathbf{x}_I = (x_1)$, $\mathbf{x}_{II,1} = (x_2, \cdots, x_{\lfloor\frac{D}{2}\rfloor})$ and $\mathbf{x}_{II,2} = (x_{\lfloor\frac{D}{2}\rfloor + 1}, \cdots, x_D)$,
+    $h_1(\mathbf{x}_I, t) = \frac{G(t)\sin(4\pi x_1)}{1 + \abs{G(t)}}$ and $h_2(\mathbf{x}_I, t) = G(t) + x_1^{H(t)}$,
+    $\mathbf{R}_{II,1}(t)$ and $\mathbf{R}_{II,2}(t)$ are symmetric positive semidefinite matrices in the $t$-th environment,
+    the search space is $[0,1] \times [-1,1]^{\lfloor\frac{D}{2}\rfloor - 1} \times  [-1, 2]^{\lceil\frac{D}{2}\rceil}$.
 
     - Pareto set (PS)
 
