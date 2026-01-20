@@ -193,6 +193,34 @@ class DynamicTestProblem(DynamicProblem):
 
     @property
     def time(self):
+        r"""Time.
+
+        Notes
+        -----
+        The discrete time $t$ is defined as follows:
+
+        \begin{equation}
+            t = \frac{1}{n_t} \left\lfloor \frac{\tau}{\tau_t} \right\rfloor + \frac{1}{n_t} \left(0.5 \times \frac{\pi_{\tau}}{9}\right), \ \tau = 0, 1, 2, \dots
+        \end{equation}
+
+        Here, $\pi_{\tau}$ is given by:
+
+        \begin{equation}
+            \pi_{\tau} =
+            \begin{cases}
+                0,                                                                                          & \text{if } \left\lfloor \frac{\tau}{\tau_t} \right\rfloor = 0, \\
+                \text{the } \left\lfloor \frac{\tau}{\tau_t} \right\rfloor\text{-th decimal digit of } \pi, & \text{otherwise.}
+            \end{cases}
+        \end{equation}
+
+        This formulation introduces a dynamic environment with an irregular change pattern. When $\pi_{\tau} = 0$, the time variation reduces to the commonly used form with a regular change pattern:
+
+        \begin{equation} \label{eq:time_regular}
+            t = \frac{1}{n_t} \left\lfloor \frac{\tau}{\tau_t} \right\rfloor, \ \tau = 0, 1, 2, \dots
+        \end{equation}
+
+        In the above expressions, $\tau$ denotes the generation counter, $n_t$ controls the severity of change, and $\tau_t$ represents the number of generations per time step.
+        """
         if self._time is not None:
             return self._time
         else:
