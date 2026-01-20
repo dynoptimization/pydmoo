@@ -3,6 +3,7 @@
 ## Classic Response Mechanisms
 
 - [algorithms.classic.nsga2_ae](algorithms/algorithms.classic.nsga2_ae.md)
+- [algorithms.classic.nsga2_pps](algorithms/algorithms.classic.nsga2_pps.md)
 
 ## Knowledge-Based Response Mechanisms
 
