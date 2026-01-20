@@ -22,7 +22,8 @@ class MOEADKTMM(DMOEAD):
         self.size_pool = 14  # the size of knowledge pool
         self.denominator = 0.5
 
-    def _response_change(self):
+    def _response_mechanism(self):
+        """Response mechanism."""
         pop = self.pop
         X = pop.get("X")
 

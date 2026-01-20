@@ -92,7 +92,7 @@ class GeneticAlgorithm(Algorithm):
                                         random_state=self.random_state, algorithm=self, **kwargs)
 
     def _infill(self):
-        # Added by DynOpt on Dec 21, 2025
+        # Added by DynOpt Team on Dec 21, 2025
         pop = self._infill_static_dynamic()
 
         # do the mating using the current population
@@ -110,7 +110,7 @@ class GeneticAlgorithm(Algorithm):
 
         return off
 
-    # Added by DynOpt on Dec 21, 2025
+    # Added by DynOpt Team on Dec 21, 2025
     def _infill_static_dynamic(self):
         pop = self.pop
 

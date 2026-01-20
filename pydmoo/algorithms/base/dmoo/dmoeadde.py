@@ -52,7 +52,7 @@ class DMOEADDE(MOEADDE):
 
                 start_time = time.time()
 
-                pop = self._response_change()
+                pop = self._response_mechanism()
 
                 # reevaluate because we know there was a change
                 self.evaluator.eval(self.problem, pop)
@@ -69,8 +69,9 @@ class DMOEADDE(MOEADDE):
 
         return pop
 
-    def _response_change(self):
-        pass
+    def _response_mechanism(self):
+        """Response mechanism."""
+        raise NotImplementedError
 
 
 class DMOEADDEA(DMOEADDE):
@@ -86,7 +87,8 @@ class DMOEADDEA(DMOEADDE):
 
         self.perc_diversity = perc_diversity
 
-    def _response_change(self):
+    def _response_mechanism(self):
+        """Response mechanism."""
         pop = self.pop
         X = pop.get("X")
 
@@ -115,7 +117,8 @@ class DMOEADDEB(DMOEADDE):
 
         self.perc_diversity = perc_diversity
 
-    def _response_change(self):
+    def _response_mechanism(self):
+        """Response mechanism."""
         pop = self.pop
         X = pop.get("X")
 

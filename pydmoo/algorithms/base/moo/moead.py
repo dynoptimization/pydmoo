@@ -105,6 +105,7 @@ class MOEAD(LoopwiseAlgorithm, GeneticAlgorithm):
         self.ideal = np.min(self.pop.get("F"), axis=0)
 
     def _next(self):
+        # Added by DynOpt Team on Dec 21, 2025
         pop = self._next_static_dynamic()
 
         # iterate for each member of the population in random order
@@ -124,7 +125,7 @@ class MOEAD(LoopwiseAlgorithm, GeneticAlgorithm):
             # now actually do the replacement of the individual is better
             self._replace(k, off)
 
-    # Added by DynOpt on Dec 21, 2025
+    # Added by DynOpt Team on Dec 21, 2025
     def _next_static_dynamic(self):
         pop = self.pop
 

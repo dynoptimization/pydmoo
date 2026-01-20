@@ -25,8 +25,8 @@ class NSGA2PPS(DNSGA2):
         self.p = 3  # the order of the AR model
         self.M = 23  # the length of history mean point series
 
-    def _response_change(self):
-        """Response."""
+    def _response_mechanism(self):
+        """Response mechanism."""
         pop = self.pop
         X = pop.get("X")
 

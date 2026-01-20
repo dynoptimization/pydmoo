@@ -20,8 +20,8 @@ class NSGA2AE(DNSGA2):
 
         super().__init__(**kwargs)
 
-    def _response_change(self):
-        """Response."""
+    def _response_mechanism(self):
+        """Response mechanism."""
         pop = self.pop
         X = pop.get("X")
 

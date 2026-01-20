@@ -43,7 +43,8 @@ class MOEADIMNLSTM(MOEADIMKTN):
             incremental_learning=self._incremental_learning,
         )
 
-    def _response_change(self):
+    def _response_mechanism(self):
+        """Response mechanism."""
         pop = self.pop
         X = pop.get("X")
 
