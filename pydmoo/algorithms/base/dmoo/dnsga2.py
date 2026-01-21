@@ -17,6 +17,21 @@ from pydmoo.algorithms.base.moo.nsga2 import NSGA2
 
 
 class DNSGA2(NSGA2):
+    """
+    Dynamic Non-dominated Sorting Genetic Algorithm II (DNSGA2).
+
+    Extension of NSGA2 for dynamic optimization problems.
+
+    Parameters
+    ----------
+    perc_detect_change : float, default=0.1
+        Percentage of population to sample for change detection (0 to 1).
+    eps : float, default=0.0
+        Threshold for change detection. Change is detected when mean squared
+        difference exceeds this value.
+    **kwargs
+        Additional arguments passed to NSGA2 parent class.
+    """
 
     def __init__(self,
                  perc_detect_change=0.1,
@@ -32,6 +47,14 @@ class DNSGA2(NSGA2):
         return super().setup(problem, **kwargs)
 
     def _detect_change_sample_part_population(self):
+        """
+        Detect environmental changes by sampling part of the population.
+
+        Returns
+        -------
+        change_detected : bool
+            True if environmental change is detected, False otherwise.
+        """
         pop = self.pop
         X, F = pop.get("X", "F")
 
@@ -50,6 +73,14 @@ class DNSGA2(NSGA2):
         return change_detected
 
     def _infill_static_dynamic(self):
+        """
+        Perform infill with dynamic change detection and response.
+
+        Returns
+        -------
+        Population
+            Current population after potential response to environmental change.
+        """
         # for dynamic environment
         pop = self.pop
 
@@ -76,7 +107,19 @@ class DNSGA2(NSGA2):
         return pop
 
     def _response_mechanism(self):
-        """Response mechanism."""
+        """
+        Response mechanism for environmental change.
+
+        Returns
+        -------
+        Population
+            Population after applying response strategy.
+
+        Raises
+        ------
+        NotImplementedError
+            Must be implemented by subclasses.
+        """
         raise NotImplementedError
 
 
