@@ -81,6 +81,7 @@ class DNSGA2(NSGA2):
 
 
 class DNSGA2A(DNSGA2):
+    """DNSGA2A."""
 
     def __init__(self,
                  perc_detect_change=0.1,
@@ -111,6 +112,7 @@ class DNSGA2A(DNSGA2):
 
 
 class DNSGA2B(DNSGA2):
+    """DNSGA2B."""
 
     def __init__(self,
                  perc_detect_change=0.1,
