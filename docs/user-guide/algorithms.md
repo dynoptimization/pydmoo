@@ -4,6 +4,7 @@
 
 - [algorithms.classic.nsga2_ae](algorithms/algorithms.classic.nsga2_ae.md)
 - [algorithms.classic.nsga2_pps](algorithms/algorithms.classic.nsga2_pps.md)
+- [algorithms.classic.moeadde_svr](algorithms/algorithms.classic.moeadde_svr.md)
 
 ## Knowledge-Based Response Mechanisms
 
