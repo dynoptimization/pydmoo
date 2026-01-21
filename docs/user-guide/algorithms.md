@@ -1,5 +1,9 @@
 # Algorithms
 
+## Base Response Mechanisms
+
+- [algorithms.base.dmoo.dnsga2](algorithms/algorithms.base.dmoo.dnsga2.md)
+
 ## Classic Response Mechanisms
 
 - [algorithms.classic.nsga2_ae](algorithms/algorithms.classic.nsga2_ae.md)
