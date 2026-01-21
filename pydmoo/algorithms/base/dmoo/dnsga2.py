@@ -34,8 +34,8 @@ class DNSGA2(NSGA2):
     """
 
     def __init__(self,
-                 perc_detect_change=0.1,
-                 eps=0.0,
+                 perc_detect_change: float = 0.1,
+                 eps: float = 0.0,
                  **kwargs):
 
         super().__init__(**kwargs)
@@ -46,7 +46,7 @@ class DNSGA2(NSGA2):
         assert not problem.has_constraints(), f"{self.__class__.__name__} only works for unconstrained problems."
         return super().setup(problem, **kwargs)
 
-    def _detect_change_sample_part_population(self):
+    def _detect_change_sample_part_population(self) -> float:
         """
         Detect environmental changes by sampling part of the population.
 
@@ -72,7 +72,7 @@ class DNSGA2(NSGA2):
         change_detected = delta > self.eps
         return change_detected
 
-    def _infill_static_dynamic(self):
+    def _infill_static_dynamic(self) -> Population:
         """
         Perform infill with dynamic change detection and response.
 
@@ -106,7 +106,7 @@ class DNSGA2(NSGA2):
 
         return pop
 
-    def _response_mechanism(self):
+    def _response_mechanism(self) -> Population:
         """
         Response mechanism for environmental change.
 
@@ -127,9 +127,9 @@ class DNSGA2A(DNSGA2):
     """DNSGA2A."""
 
     def __init__(self,
-                 perc_detect_change=0.1,
-                 eps=0.0,
-                 perc_diversity=0.3,
+                 perc_detect_change: float = 0.1,
+                 eps: float = 0.0,
+                 perc_diversity: float = 0.3,
                  **kwargs):
         super().__init__(perc_detect_change=perc_detect_change,
                          eps=eps,
@@ -137,7 +137,7 @@ class DNSGA2A(DNSGA2):
 
         self.perc_diversity = perc_diversity
 
-    def _response_mechanism(self):
+    def _response_mechanism(self) -> Population:
         """Response mechanism."""
         pop = self.pop
         X = pop.get("X")
@@ -158,9 +158,9 @@ class DNSGA2B(DNSGA2):
     """DNSGA2B."""
 
     def __init__(self,
-                 perc_detect_change=0.1,
-                 eps=0.0,
-                 perc_diversity=0.3,
+                 perc_detect_change: float = 0.1,
+                 eps: float = 0.0,
+                 perc_diversity: float = 0.3,
                  **kwargs):
         super().__init__(perc_detect_change=perc_detect_change,
                          eps=eps,
@@ -168,7 +168,7 @@ class DNSGA2B(DNSGA2):
 
         self.perc_diversity = perc_diversity
 
-    def _response_mechanism(self):
+    def _response_mechanism(self) -> Population:
         """Response mechanism."""
         pop = self.pop
         X = pop.get("X")
