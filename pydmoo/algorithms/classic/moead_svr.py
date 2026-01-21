@@ -47,7 +47,7 @@ class MOEADSVR(DMOEAD):
 
         if K < self._q + 2:
             # recreate the current population without being evaluated
-            # Re-evaluate the current population, and update the  reference point
+            # Re-evaluate the current population, and update the reference point
             pop = Population.new(X=X)
 
             return pop
