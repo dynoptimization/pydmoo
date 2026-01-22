@@ -46,7 +46,7 @@ class DNSGA2(NSGA2):
         assert not problem.has_constraints(), f"{self.__class__.__name__} only works for unconstrained problems."
         return super().setup(problem, **kwargs)
 
-    def _detect_change_sample_part_population(self) -> float:
+    def _detect_change_sample_part_population(self) -> bool:
         """
         Detect environmental changes by sampling part of the population.
 
@@ -124,7 +124,16 @@ class DNSGA2(NSGA2):
 
 
 class DNSGA2A(DNSGA2):
-    """DNSGA2A."""
+    """DNSGA2A.
+
+    References
+    ----------
+    Deb, K., Rao N., U. B., and Karthik, S. (2007).
+    Dynamic multi-objective optimization and decision-making using modified NSGA-II:
+        A case study on hydro-thermal power scheduling.
+    Evolutionary Multi-Criterion Optimization, 803–817.
+    https://doi.org/10.1007/978-3-540-70928-2_60
+    """
 
     def __init__(self,
                  perc_detect_change: float = 0.1,
@@ -155,7 +164,16 @@ class DNSGA2A(DNSGA2):
 
 
 class DNSGA2B(DNSGA2):
-    """DNSGA2B."""
+    """DNSGA2B.
+
+    References
+    ----------
+    Deb, K., Rao N., U. B., and Karthik, S. (2007).
+    Dynamic multi-objective optimization and decision-making using modified NSGA-II:
+        A case study on hydro-thermal power scheduling.
+    Evolutionary Multi-Criterion Optimization, 803–817.
+    https://doi.org/10.1007/978-3-540-70928-2_60
+    """
 
     def __init__(self,
                  perc_detect_change: float = 0.1,

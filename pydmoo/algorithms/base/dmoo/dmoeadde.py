@@ -8,6 +8,21 @@ from pydmoo.algorithms.base.moo.moeadde import MOEADDE
 
 
 class DMOEADDE(MOEADDE):
+    """
+    Dynamic MOEA/D-DE (DMOEADDE).
+
+    Extension of MOEADDE for dynamic optimization problems.
+
+    Parameters
+    ----------
+    perc_detect_change : float, default=0.1
+        Percentage of population to sample for change detection (0 to 1).
+    eps : float, default=0.0
+        Threshold for change detection. Change is detected when mean squared
+        difference exceeds this value.
+    **kwargs
+        Additional arguments passed to MOEADDE parent class.
+    """
 
     def __init__(self,
                  perc_detect_change=0.1,
@@ -22,7 +37,15 @@ class DMOEADDE(MOEADDE):
         assert not problem.has_constraints(), f"{self.__class__.__name__} only works for unconstrained problems."
         return super().setup(problem, **kwargs)
 
-    def _detect_change_sample_part_population(self):
+    def _detect_change_sample_part_population(self) -> bool:
+        """
+        Detect environmental changes by sampling part of the population.
+
+        Returns
+        -------
+        change_detected : bool
+            True if environmental change is detected, False otherwise.
+        """
         pop = self.pop
         X, F = pop.get("X", "F")
 
@@ -40,7 +63,15 @@ class DMOEADDE(MOEADDE):
         change_detected = delta > self.eps
         return change_detected
 
-    def _next_static_dynamic(self):
+    def _next_static_dynamic(self) -> Population:
+        """
+        Perform next with dynamic change detection and response.
+
+        Returns
+        -------
+        Population
+            Current population after potential response to environmental change.
+        """
         # for dynamic environment
         pop = self.pop
 
@@ -69,12 +100,25 @@ class DMOEADDE(MOEADDE):
 
         return pop
 
-    def _response_mechanism(self):
-        """Response mechanism."""
+    def _response_mechanism(self) -> Population:
+        """
+        Response mechanism for environmental change.
+
+        Returns
+        -------
+        Population
+            Population after applying response strategy.
+
+        Raises
+        ------
+        NotImplementedError
+            Must be implemented by subclasses.
+        """
         raise NotImplementedError
 
 
 class DMOEADDEA(DMOEADDE):
+    """DMOEADDEA."""
 
     def __init__(self,
                  perc_detect_change=0.1,
@@ -105,6 +149,7 @@ class DMOEADDEA(DMOEADDE):
 
 
 class DMOEADDEB(DMOEADDE):
+    """DMOEADDEB."""
 
     def __init__(self,
                  perc_detect_change=0.1,
