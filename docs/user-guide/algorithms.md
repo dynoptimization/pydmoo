@@ -3,6 +3,8 @@
 ## Base Response Mechanisms
 
 - [algorithms.base.dmoo.dnsga2](algorithms/algorithms.base.dmoo.dnsga2.md)
+- [algorithms.base.dmoo.dmoead](algorithms/algorithms.base.dmoo.dmoead.md)
+- [algorithms.base.dmoo.dmoeadde](algorithms/algorithms.base.dmoo.dmoeadde.md)
 
 ## Classic Response Mechanisms
 

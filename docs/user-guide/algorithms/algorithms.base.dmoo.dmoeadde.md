@@ -1,12 +1,12 @@
-# algorithms.base.dmoo.dnsga2
+# algorithms.base.dmoo.dmoeadde
 
-::: pydmoo.algorithms.base.dmoo.dnsga2
+::: pydmoo.algorithms.base.dmoo.dmoeadde
     options:
       show_root_heading: false
       members:
-        - DNSGA2
-        - DNSGA2A
-        - DNSGA2B
+        - DMOEADDE
+        - DMOEADDEA
+        - DMOEADDEB
       show_submodules: true
       heading_level: 2
       show_source: true
