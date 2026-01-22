@@ -7,13 +7,18 @@ from pydmoo.algorithms.base.moo.moead import MOEAD
 
 
 class MOEADDE(MOEAD):
-    """MOEA/D-DE (Updated by Cao).
+    """MOEA/D-DE.
 
-    It is worth noting that there is a distinct modification in line 28 compared with the original framework of MOEA/D-DE.
-    The newly generated solution competes with each member from the corresponding mating neighborhood (denoted as Pool in Algorithm 2).
-    But in the original MOEA/D-DE framework, it only competes with two members from the corresponding mating neighborhood.
-    This modification expands the replacement neighborhood to enhance the exploitation capability that is extremely important in dealing with DMOPs.
+    Notes
+    -----
+    It is worth noting that there is a distinct modification in line 28 compared with the original framework of
+    MOEA/D-DE. The newly generated solution competes with each member from the corresponding mating neighborhood
+    (denoted as Pool in Algorithm 2). But in the original MOEA/D-DE framework, it only competes with two members from
+    the corresponding mating neighborhood. This modification expands the replacement neighborhood to enhance the
+    exploitation capability that is extremely important in dealing with DMOPs (Cao et al., 2020).
 
+    References
+    ----------
     Cao, L., Xu, L., Goodman, E. D., Bao, C., and Zhu, S. (2020).
     Evolutionary dynamic multiobjective optimization assisted by a support vector regression predictor.
     IEEE Transactions on Evolutionary Computation, 24(2), 305–319.
