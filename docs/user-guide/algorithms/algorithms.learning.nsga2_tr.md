@@ -1,4 +1,4 @@
-# algorithms.learning.nsga2_ae
+# algorithms.learning.nsga2_tr
 
 ::: pydmoo.algorithms.learning.nsga2_tr
     options:
