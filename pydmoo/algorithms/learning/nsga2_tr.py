@@ -8,7 +8,7 @@ from pydmoo.algorithms.base.dmoo.dnsga2 import DNSGA2
 from pydmoo.core.transfer import TCA
 
 
-class NSGA2TR(DNSGA2):
+class NSGA2Tr(DNSGA2):
     """Transfer learning (Tr).
 
     Transfer Learning-based Initial Population Generator (Tr-IPG)
