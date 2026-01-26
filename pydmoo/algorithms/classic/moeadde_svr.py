@@ -29,7 +29,7 @@ class MOEADDESVR(DMOEADDE):
         self._epsilon = 0.05  # the insensitive tube size in SVR model
         # self._gamma = 1/d  # the Gaussian RBF kernel parameter used in SVR model, and d is the number of variables
 
-    def _response_mechanism(self):
+    def _response_mechanism(self) -> Population:
         """Response mechanism."""
         pop = self.pop
         X = pop.get("X")

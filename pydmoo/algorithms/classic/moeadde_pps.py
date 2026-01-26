@@ -25,7 +25,7 @@ class MOEADDEPPS(DMOEADDE):
         self.p = 3  # the order of the AR model
         self.M = 23  # the length of history mean point series
 
-    def _response_mechanism(self):
+    def _response_mechanism(self) -> Population:
         """Response mechanism."""
         pop = self.pop
         X = pop.get("X")
