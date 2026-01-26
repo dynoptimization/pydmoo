@@ -30,7 +30,7 @@ class MOEADDETr(DMOEADDE):
         #
         self._maxiter = max(self.pop_size, 100)  # default is 1000
 
-    def _response_mechanism(self):
+    def _response_mechanism(self) -> Population:
         """Response mechanism."""
         pop = self.pop
         X, F = pop.get("X", "F")
