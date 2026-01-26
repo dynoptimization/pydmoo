@@ -1,6 +1,6 @@
 [project]
 name = "pydmoo"
-version = "0.1.3"
+version = "0.1.4"
 description = "Dynamic Multi-Objective Optimization in Python (pydmoo)."
 license = {text = "GPL-3.0-or-later"}
 license-files = ["LICENSE"]
