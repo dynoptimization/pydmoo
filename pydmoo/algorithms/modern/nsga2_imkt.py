@@ -19,7 +19,7 @@ class NSGA2IMKT(NSGA2KTMM):
         self.size_pool = 10
         self.denominator = 0.5
 
-    def _response_mechanism(self):
+    def _response_mechanism(self) -> Population:
         """Response mechanism."""
         """Inverse Modeling with Knowledge Transfer."""
         pop = self.pop

@@ -42,7 +42,7 @@ class MOEADDEIMLSTM(MOEADDEIMKT):
             incremental_learning=self._incremental_learning,
         )
 
-    def _response_mechanism(self):
+    def _response_mechanism(self) -> Population:
         """Response mechanism."""
         pop = self.pop
         X = pop.get("X")

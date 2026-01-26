@@ -16,7 +16,7 @@ class NSGA2IMKTIGP(NSGA2IMKT):
         self.sigma_n = 0.01
         self.sigma_n_2 = self.sigma_n ** 2
 
-    def _response_mechanism(self):
+    def _response_mechanism(self) -> Population:
         """Response mechanism."""
         pop = self.pop
         X = pop.get("X")
