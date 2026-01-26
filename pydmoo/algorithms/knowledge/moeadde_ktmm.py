@@ -9,6 +9,8 @@ from pydmoo.core.sample_gaussian import univariate_gaussian_sample
 class MOEADDEKTMM(DMOEADDE):
     """Knowledge Transfer with Mixture Model.
 
+    References
+    ----------
     Zou, J., Hou, Z., Jiang, S., Yang, S., Ruan, G., Xia, Y., and Liu, Y. (2025).
     Knowledge transfer with mixture model in dynamic multi-objective optimization.
     IEEE Transactions on Evolutionary Computation, in press.
@@ -22,7 +24,7 @@ class MOEADDEKTMM(DMOEADDE):
         self.size_pool = 14  # the size of knowledge pool
         self.denominator = 0.5
 
-    def _response_mechanism(self):
+    def _response_mechanism(self) -> Population:
         """Response mechanism."""
         pop = self.pop
         X = pop.get("X")
