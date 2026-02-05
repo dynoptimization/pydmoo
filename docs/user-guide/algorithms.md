@@ -14,6 +14,7 @@
 
 ## Knowledge-Based Response Mechanisms
 
+- [nsga2_kgb](algorithms/algorithms.knowledge.nsga2_kgb.md)
 - [nsga2_ktmm](algorithms/algorithms.knowledge.nsga2_ktmm.md)
 - [nsga2_imkt](algorithms/algorithms.modern.nsga2_imkt.md)
 
