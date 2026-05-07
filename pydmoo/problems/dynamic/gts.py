@@ -1174,61 +1174,61 @@ class GTS1_2(GTS1):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
-class GTS2_2(GTS1):
+class GTS2_2(GTS2):
     """GTS2_2 test problem."""
     def __init__(self, matrix_case="two", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
-class GTS3_2(GTS1):
+class GTS3_2(GTS3):
     """GTS3_2 test problem."""
     def __init__(self, matrix_case="two", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
-class GTS4_2(GTS1):
+class GTS4_2(GTS4):
     """GTS4_2 test problem."""
     def __init__(self, matrix_case="two", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
-class GTS5_2(GTS1):
+class GTS5_2(GTS5):
     """GTS5_2 test problem."""
     def __init__(self, matrix_case="two", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
-class GTS6_2(GTS1):
+class GTS6_2(GTS6):
     """GTS6_2 test problem."""
     def __init__(self, matrix_case="two", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
-class GTS7_2(GTS1):
+class GTS7_2(GTS7):
     """GTS7_2 test problem."""
     def __init__(self, matrix_case="two", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
-class GTS8_2(GTS1):
+class GTS8_2(GTS8):
     """GTS8_2 test problem."""
     def __init__(self, matrix_case="two", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
-class GTS9_2(GTS1):
+class GTS9_2(GTS9):
     """GTS9_2 test problem."""
     def __init__(self, matix_case="two", **kwargs):
         super().__init__(matrix_case=matix_case, **kwargs)
 
 
-class GTS10_2(GTS1):
+class GTS10_2(GTS10):
     """GTS10_2 test problem."""
     def __init__(self, matrix_case="two", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
-class GTS11_2(GTS1):
+class GTS11_2(GTS11):
     """GTS11_2 test problem."""
     def __init__(self, matrix_case="two", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
@@ -1240,61 +1240,61 @@ class GTS1_3(GTS1):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
-class GTS2_3(GTS1):
+class GTS2_3(GTS2):
     """GTS2_3 test problem."""
     def __init__(self, matrix_case="three", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
-class GTS3_3(GTS1):
+class GTS3_3(GTS3):
     """GTS3_3 test problem."""
     def __init__(self, matrix_case="three", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
-class GTS4_3(GTS1):
+class GTS4_3(GTS4):
     """GTS4_3 test problem."""
     def __init__(self, matrix_case="three", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
-class GTS5_3(GTS1):
+class GTS5_3(GTS5):
     """GTS5_3 test problem."""
     def __init__(self, matrix_case="three", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
-class GTS6_3(GTS1):
+class GTS6_3(GTS6):
     """GTS6_3 test problem."""
     def __init__(self, matrix_case="three", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
-class GTS7_3(GTS1):
+class GTS7_3(GTS7):
     """GTS7_3 test problem."""
     def __init__(self, matrix_case="three", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
-class GTS8_3(GTS1):
+class GTS8_3(GTS8):
     """GTS8_3 test problem."""
     def __init__(self, matrix_case="three", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
-class GTS9_3(GTS1):
+class GTS9_3(GTS9):
     """GTS9_3 test problem."""
     def __init__(self, matrix_case="three", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
-class GTS10_3(GTS1):
+class GTS10_3(GTS10):
     """GTS10_3 test problem."""
     def __init__(self, matrix_case="three", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
 
 
-class GTS11_3(GTS1):
+class GTS11_3(GTS11):
     """GTS11_3 test problem."""
     def __init__(self, matrix_case="three", **kwargs):
         super().__init__(matrix_case=matrix_case, **kwargs)
